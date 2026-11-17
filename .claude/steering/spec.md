@@ -103,7 +103,6 @@ Desktop ≥ 768px: pager in a centered column `min(430px, 100vw)`, `aspect` free
 - Contrast: text on stage cream on `#5a1a10`-ish ≥ 7:1; price pills white on Roman red ≥ 4.5:1; italic descriptions ≥ 4.5:1 on parchment. Headings: one `<h1>` (cover), `<h2>` per page, `<h3>` per category.
 
 ## 7. Tests (write first, red first; Lane 1 owns)
-**SCOPED DOWN by the owner (2026-11-18): this is only a landing page. Light testing only.** Keep ONLY the menu data check (`tests/data.test.ts` against `tests/fixtures/pdf-items.json`: counts, names, prices, the null-price rule) plus `tests/photos.test.ts` (files exist). Do NOT write or add unit-test suites for pager, tiles, motion, anatomy, price or slug beyond what already exists, no Lighthouse runs, no full acceptance pass. The table below is the original plan and is superseded by this note.
 | File | Asserts |
 |---|---|
 | tests/data.test.ts | page order/ids and per-category counts exactly match section 4 table; total 111; 14 pages; ids unique |
