@@ -32,6 +32,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  overflow: clip;                      /* clip, not hidden: focus on an off-screen tile must never scroll the scene sideways */
   width: 100%;
   aspect-ratio: 350 / 440;
   /* top corners: half the width across, 0.62 of that up = the cover arch */
