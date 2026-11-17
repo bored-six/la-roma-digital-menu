@@ -116,11 +116,11 @@ export interface TileSlot {
 
 // Three rows down each side of the plate. Left/right columns hug the arch; rows are clear of the headline and the bottom card.
 const UL: TileSlot = { x: 15, y: 38 };
-const L: TileSlot = { x: 11, y: 57 };
-const LL: TileSlot = { x: 15, y: 75 };
+const L: TileSlot = { x: 11, y: 55 };
+const LL: TileSlot = { x: 15, y: 72 };
 const UR: TileSlot = { x: 85, y: 38 };
-const R: TileSlot = { x: 89, y: 57 };
-const LR: TileSlot = { x: 85, y: 75 };
+const R: TileSlot = { x: 89, y: 55 };
+const LR: TileSlot = { x: 85, y: 72 };
 
 // Clockwise from the top-left so that neighbours in list order stay neighbours in space and a swap reads as a slow carousel.
 const SLOTS: ReadonlyArray<readonly TileSlot[]> = [
