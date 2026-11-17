@@ -14,10 +14,12 @@ Source material: `reference/La_Roma_Menu_Messenger.pdf` (15 pages) and its page 
 - Mobile first (phone portrait is the primary screen), desktop must still look intentional.
 
 ## Stack
-Not decided yet. Leaning: static site, no backend (menu lives in a typed data file). Decide after the open questions are answered, and record the choice here.
+Vite + React 18 + TypeScript (strict), GSAP (core, Draggable, SplitText, @gsap/react), Vitest. No backend: the menu is `src/data/menu.ts`, bundled. Pager is CSS scroll-snap + IntersectionObserver. Fonts via fontsource: Cinzel (titles), Bricolage Grotesque (item names), Familjen Grotesk italic (descriptions), Reddit Mono (prices). Static hosting.
+Commands: `npm run dev` (port 5173, or see `.claude/launch.json`), `npm test`, `npm run typecheck`, `npm run build`.
 
 ## Status
-Bootstrap done. Menu not yet transcribed into data. No code written.
+Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 29 dish photos, 328 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; fixes in progress.
+Open: real Facebook URL (`src/data/site.ts` placeholder); photos for about 70 items; Safari/iOS untested; Unli Rice page keeps only the first PDF tagline.
 
 ## Where things live
 - `reference/` original PDF and page renders (read-only, do not edit)
