@@ -14,8 +14,8 @@ export interface OptionTilesHandle {
 interface OptionTilesProps {
   tiles: readonly Tile[];
   slots: readonly TileSlot[];
-  /** Stage on screen: thumbnails load now. */
-  eager: boolean;
+  /** Render the thumbnails at all (false until the stage has been near the current page once). They are always loading=lazy. */
+  show: boolean;
   /** Stagger the entrance (first mount only; later arrivals pop in with no delay). */
   stagger: boolean;
   onPick(id: string, slotIndex: number): void;
@@ -27,7 +27,7 @@ interface OptionTilesProps {
  * The selected dish is not a tile: it is the plate.
  */
 export const OptionTiles = forwardRef<OptionTilesHandle, OptionTilesProps>(function OptionTiles(
-  { tiles, slots, eager, stagger, onPick },
+  { tiles, slots, show, stagger, onPick },
   ref,
 ) {
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
@@ -64,7 +64,7 @@ export const OptionTiles = forwardRef<OptionTilesHandle, OptionTilesProps>(funct
                 <PlaceholderPlate icon={findItemContext(item.id)?.category.icon ?? ''} variant="tile" />
               ) : (
                 <span className={s.thumb}>
-                  <PhotoFrame file={photo.entry.file} alt="" geom={plateGeomFor(item, photo)} eager={eager} />
+                  <PhotoFrame file={photo.entry.file} alt="" geom={plateGeomFor(item, photo)} show={show} />
                 </span>
               )}
             </span>

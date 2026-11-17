@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import gsap from 'gsap';
 import '../../../design-system/tokens.css';
@@ -9,6 +9,8 @@ import { motion } from '../../lib/motion';
 import { resolvePhoto } from '../../lib/photos';
 import { defaultSelectedId, pickTiles } from '../../lib/tiles';
 import type { StageProps } from '../../types';
+import { AnatomiaBoundary } from './AnatomiaBoundary';
+import { getAnatomia, preloadAnatomia } from './anatomiaLoader';
 import { OptionTiles, type OptionTilesHandle } from './OptionTiles';
 import { Plate } from './Plate';
 import { StageHeadline, type HeadlineHandle } from './StageHeadline';
@@ -19,10 +21,6 @@ import { LayersMark } from './stageSvg';
 import { useTilt } from './useTilt';
 import s from './stage.module.css';
 
-// Anatomia (and GSAP Draggable with it) is a separate chunk: it is only needed once someone opens it.
-const loadAnatomia = () => import('../anatomia/Anatomia');
-const Anatomia = lazy(loadAnatomia);
-
 /** Longest we wait for the next photo before swapping anyway. */
 const PRELOAD_CAP_MS = 600;
 
@@ -32,8 +30,15 @@ const PRELOAD_CAP_MS = 600;
  * `selectedId` is owned by the parent. Tapping a tile calls `onSelect`; whenever `selectedId` changes (tile, list row,
  * anything) the plate spins out, the new one spins in, the name re-sets and the tiles reflow.
  */
-export function Stage({ items, selectedId, onSelect, active }: StageProps) {
+export function Stage({ items, selectedId, onSelect, active, near }: StageProps) {
   const reduced = useReducedMotion();
+
+  // Photos: not a single <img> is rendered until this stage has been near the current page once (spec section 6), then they stay.
+  // `near` is current page +-1; a parent that does not pass it gets the stricter "only when active".
+  const isNear = near ?? active;
+  const everNear = useRef(isNear);
+  if (isNear) everNear.current = true;
+  const photosOn = everNear.current;
 
   // What the parent wants shown, falling back to the page default if it points at nothing we know.
   const wantedId = useMemo(
@@ -57,7 +62,11 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
   const focusSlot = useRef<number | null>(null);
   const everSwapped = useRef(false);
 
+  const anatomiaBtnRef = useRef<HTMLButtonElement>(null);
+  const swapInFlight = useRef(false);
   const [anatomiaOpen, setAnatomiaOpen] = useState(false);
+  /** Consecutive failed loads of the Anatomia chunk. */
+  const [anatomiaFails, setAnatomiaFails] = useState(0);
   const [announce, setAnnounce] = useState('');
 
   const shown = items.find((i) => i.id === displayedId) ?? items.find((i) => i.id === wantedId) ?? items[0];
@@ -71,6 +80,7 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
   const slots = useMemo(() => tileSlots(tiles.length), [tiles.length]);
   const anatomy = shown ? anatomyFor(shown, PHOTOS, ANATOMY_REGIONS) : null;
   const eyebrow = shown?.subgroup ?? ctx?.category.title ?? '';
+  const Anatomia = getAnatomia();
 
   useTilt(stageRef, tiltRef, active && !reduced);
 
@@ -80,21 +90,40 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
     if (!active || !eligible) return;
     const w = window as Window & { requestIdleCallback?: (cb: () => void) => number; cancelIdleCallback?: (id: number) => void };
     if (typeof w.requestIdleCallback === 'function') {
-      const id = w.requestIdleCallback(() => void loadAnatomia());
+      const id = w.requestIdleCallback(preloadAnatomia);
       return () => w.cancelIdleCallback?.(id);
     }
-    const id = window.setTimeout(() => void loadAnatomia(), 1200);
+    const id = window.setTimeout(preloadAnatomia, 1200);
     return () => window.clearTimeout(id);
   }, [active, eligible]);
 
   // ---------- the swap ----------
   useEffect(() => {
-    if (wantedId === null || wantedId === displayedRef.current) return;
-    const nextId = wantedId;
+    if (wantedId === null) return;
     const swapEl = swapRef.current;
+    if (wantedId === displayedRef.current) {
+      // Nothing to swap to. But a swap may have been cancelled half-way (tap tile B, then at once the dish already shown):
+      // the plate and the text are still faded out, so bring them back.
+      if (swapInFlight.current) {
+        swapInFlight.current = false;
+        if (swapEl !== null) {
+          gsap.killTweensOf(swapEl);
+          gsap.set(swapEl, { clearProps: 'transform,opacity' });
+        }
+        headlineRef.current?.restore();
+      }
+      return;
+    }
+    const nextId = wantedId;
 
-    // Off screen (or not mounted yet): no one would see a transition, just set it.
+    // Off screen (or not mounted yet): no one would see a transition, just set it. If a swap was cut short by leaving the page
+    // (tap, then swipe away inside the out-tween) the plate is still spun out and transparent: put it back, or it is invisible on return.
     if (!active || swapEl === null) {
+      swapInFlight.current = false;
+      if (swapEl !== null) {
+        gsap.killTweensOf(swapEl);
+        gsap.set(swapEl, { clearProps: 'transform,opacity' });
+      }
       setDisplayedId(nextId);
       return;
     }
@@ -109,6 +138,7 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
 
     const commit = () => {
       if (swapToken.current !== token) return; // a newer tap took over
+      swapInFlight.current = false;
       everSwapped.current = true; // before the render, so tiles arriving now pop in without the first-mount stagger
       flushSync(() => setDisplayedId(nextId));
       const el = swapRef.current;
@@ -131,6 +161,7 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
       setAnnounce(label);
     };
 
+    swapInFlight.current = true;
     headlineRef.current?.out();
     gsap.killTweensOf(swapEl);
     gsap.to(swapEl, {
@@ -142,10 +173,23 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
     });
 
     return () => {
-      // Superseded or unmounted: drop this swap's late callbacks. The next effect run starts a fresh out-tween.
+      // Superseded, page left, or unmounted: drop this swap's late callbacks and stop its tweens. The next run either starts a
+      // fresh out-tween from wherever the plate is (a second tap) or, if the page was left, puts the plate back (branch above).
       swapToken.current++;
+      // Only the OUT half: once committed, the in-tween belongs to nobody's cleanup and runs to its own clearProps.
+      if (swapInFlight.current) gsap.killTweensOf(swapEl);
     };
   }, [wantedId, active, reduced]);
+
+  // Safety net: a stage that is on screen with no swap in flight must never have a spun-out plate (covers any path that left the
+  // tween half-way, e.g. the settled page changing while a swap was mid-flight).
+  useEffect(() => {
+    const el = swapRef.current;
+    if (active && el !== null && !swapInFlight.current && wantedId === displayedRef.current) {
+      gsap.killTweensOf(el);
+      gsap.set(el, { clearProps: 'transform,opacity' });
+    }
+  }, [active, wantedId]);
 
   // Anatomia belongs to one dish on one visible page.
   useEffect(() => {
@@ -182,12 +226,21 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
             className={`lr-stage-btn ${s.anatomiaBtn}`}
             aria-haspopup="dialog"
             aria-expanded={anatomiaOpen}
-            onPointerEnter={() => void loadAnatomia()}
-            onFocus={() => void loadAnatomia()}
-            onClick={() => setAnatomiaOpen(true)}
+            ref={anatomiaBtnRef}
+            onPointerEnter={preloadAnatomia}
+            onFocus={preloadAnatomia}
+            onClick={() => {
+              // Chrome remembers a failed module fetch for the rest of the page's life, so after a second failure the only honest
+              // retry is a reload (the hash keeps the page).
+              if (anatomiaFails >= 2) {
+                window.location.reload();
+                return;
+              }
+              setAnatomiaOpen(true);
+            }}
           >
             <LayersMark className={s.btnMark} />
-            <span>Anatomia</span>
+            <span>{anatomiaFails >= 2 ? 'Reload' : anatomiaFails === 1 ? 'Try again' : 'Anatomia'}</span>
           </button>
         )}
 
@@ -197,12 +250,12 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
         <div ref={tiltRef} className={s.plateTilt}>
           <div className={s.bob}>
             <div ref={swapRef} className={s.swap}>
-              <Plate item={shown} photo={photo} icon={icon} eager={active} />
+              <Plate item={shown} photo={photo} icon={icon} eager={isNear} show={photosOn} />
             </div>
           </div>
         </div>
 
-        <OptionTiles ref={tilesRef} tiles={tiles} slots={slots} eager={active} stagger={!everSwapped.current} onPick={onPick} />
+        <OptionTiles ref={tilesRef} tiles={tiles} slots={slots} show={photosOn} stagger={!everSwapped.current} onPick={onPick} />
 
         <div className={s.grain} aria-hidden="true" />
         <p className={s.sr} aria-live="polite" aria-atomic="true">
@@ -211,14 +264,28 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
       </section>
 
       {anatomiaOpen && anatomy !== null && (
-        <Suspense fallback={null}>
-          <Anatomia
-            item={shown}
-            photo={anatomy.entry}
-            regions={anatomy.regions}
-            onClose={() => setAnatomiaOpen(false)}
-          />
-        </Suspense>
+        <AnatomiaBoundary
+          onFail={() => {
+            // chunk fetch failed or the sheet threw: close it, say so on the button, and the next press retries
+            // (a sheet that opens fine resets the count: see onClose below)
+            setAnatomiaOpen(false);
+            setAnatomiaFails((n) => n + 1);
+            setAnnounce('Anatomia could not load. Press the button to try again.');
+          }}
+        >
+          <Suspense fallback={null}>
+            <Anatomia
+              item={shown}
+              photo={anatomy.entry}
+              regions={anatomy.regions}
+              returnFocusRef={anatomiaBtnRef}
+              onClose={() => {
+                setAnatomiaFails(0);
+                setAnatomiaOpen(false);
+              }}
+            />
+          </Suspense>
+        </AnatomiaBoundary>
       )}
     </div>
   );

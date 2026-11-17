@@ -11,6 +11,8 @@ gsap.registerPlugin(SplitText);
 export interface HeadlineHandle {
   /** Fade the current text out. Returns the tween so the caller can wait for it. */
   out(): gsap.core.Tween | null;
+  /** Undo `out()` for the SAME dish (a swap that was cancelled by tapping the dish that is already shown). */
+  restore(): void;
 }
 
 interface StageHeadlineProps {
@@ -54,6 +56,12 @@ export const StageHeadline = forwardRef<HeadlineHandle, StageHeadlineProps>(func
         if (els.length === 0) return null;
         const m = motion(reduced);
         return gsap.to(els, { opacity: 0, y: reduced ? 0 : -6, duration: reduced ? m.fade.xs : m.dur.s, ease: 'power3.in', overwrite: true });
+      },
+      restore() {
+        const els = all();
+        if (els.length === 0) return;
+        gsap.killTweensOf(els);
+        gsap.set(els, { opacity: 1, y: 0 });
       },
     }),
     [reduced],

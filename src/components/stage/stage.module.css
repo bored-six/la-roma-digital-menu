@@ -410,6 +410,16 @@
   box-shadow: inset 0 0 0 1px rgb(146 117 79 / 0.35);
 }
 
+/* ---------- only the settled page animates ---------- */
+/* All 13 stages are mounted. The endless loops (plate bob, shadow breath, the six tile floats) run only while the page is the current
+   one; every other stage is frozen so it costs no style or paint work. The one-shot tileIn entrance is left alone on purpose, so
+   tiles are already there when a neighbouring page slides in. */
+.wrap:not([data-active]) .bob,
+.wrap:not([data-active]) .tile,
+.wrap:not([data-active]) :global(.lr-stage__shadow) {
+  animation-play-state: paused;
+}
+
 /* ---------- keyframes ---------- */
 
 @keyframes bob {
