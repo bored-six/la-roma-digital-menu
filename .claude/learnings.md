@@ -18,3 +18,11 @@ What works: `osascript -l JavaScript script.js <pdf> <outdir>` using PDFKit thro
 - Cover portal: the cover is a track page, so the "arch floods the screen" tween ends in a hand-off behind `.pager__veil` (same red as the arch) and an instant `scrollTo` to page 1. The veil, not the pager, hides the cut.
 - A badge beside an item name squeezes long names on 390px (17 "Unli rice" pills on one page). Badges sit on the description line instead.
 - Headless Brave drives well over CDP with Node 24's global `WebSocket` (no puppeteer needed): `Input.synthesizeScrollGesture` for real swipes, `Emulation.setEmulatedMedia` for reduced motion, `Network.emulateNetworkConditions` + `Emulation.setCPUThrottlingRate` for an LCP check.
+
+## 2026-11-18 - Stage and Anatomia (lane 3) patterns
+- Circle crop needs no image size: frame `left:50%; top:50%; width:(50/r)%` of the plate box, `translate(-cx*100%, -cy*100%)` of its own size (`cropFrame`). The same frame, clipped with `clip-path: ellipse()` on the `<img>` only, is an Anatomia layer that sits exactly on its own pixels at z=0.
+- photos.json holds ONE plate per file. `alsoFor` dishes (sisig, pinakbet, hot choco...) have their circles in `photos.report.md` only; they live in `stageLogic.ts` (`ALSO_FOR_PLATES`) until the manifest gets a field for them.
+- True isometric is `rotateX(55) rotateZ(-35)` (Z applied to the point first). GSAP's own transform order is the reverse, so Anatomia writes the transform strings itself. All motion tweens plain numbers in a state object; one `apply()` writes DOM transforms and the SVG leader lines from the analytic `project()` (no getBoundingClientRect while dragging).
+- Never put `touch-action` on the stage: the pager swipes with native scroll-snap and a swipe that starts on the stage must still scroll. Draggable on a detached proxy div with `trigger: view`, dx = `this.x - this.startX`.
+- React 18 warns on camelCase `fetchPriority` on `<img>` (needs lowercase, which the types reject): skip it, `loading="eager"` is enough.
+- Brave CDP from Node needs `--remote-allow-origins=*`, otherwise the WebSocket never opens and node exits 13 silently. To test lane 3 inside the real shell without editing lane 2's files: a throwaway vite config with an inline plugin that rewrites the `StageSlot` import in `CategoryPage.tsx`.
