@@ -1,0 +1,366 @@
+/* =====================================================================
+   La Roma stage + ornament recipes. Pure CSS, needs tokens.css first.
+
+   Markup (order matters, it is the paint order):
+   <div class="lr-stage-wrap">                       container for cqi units
+     <section class="lr-stage" style="--tilt-x:0deg;--tilt-y:0deg">
+       <div class="lr-stage__floor"></div>
+       <p class="lr-stage__eyebrow">All-day breakfast</p>
+       <h2 class="lr-stage__title">Chicksilog</h2>
+       <div class="lr-stage__shadow"></div>
+       <div class="lr-plate"><img src="..." alt="..."></div>
+       <button class="lr-tile" style="--x:14%;--y:58%;--float-delay:-1.2s" aria-pressed="false">
+         <span class="lr-tile__face lr-squircle"><img class="lr-tile__thumb" src="..." alt=""></span>
+       </button>
+       <div class="lr-glass lr-stage__card">...</div>
+       <span class="lr-pill lr-stage__price"><span class="lr-pill__cur">₱</span>150</span>
+     </section>
+   </div>
+   JS only writes --tilt-x / --tilt-y (pointer or device tilt, clamp to +-8deg)
+   and swaps the plate image. Everything else is static CSS.
+   ===================================================================== */
+
+/* ---------- stage panel: flattened Roman arch, oxblood, lit from above ---------- */
+.lr-stage-wrap {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.lr-stage {
+  --plate-y: 37%;                      /* plate top, % of stage height */
+  --plate-size: min(56cqi, 236px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 350 / 440;
+  /* top corners: half the width across, 0.62 of that up = the cover arch */
+  border-radius: 50% 50% var(--r-lg) var(--r-lg) / calc(50cqi * var(--arch-rise)) calc(50cqi * var(--arch-rise)) var(--r-lg) var(--r-lg);
+  background:
+    radial-gradient(70% 38% at 50% 0%, rgb(232 194 126 / 0.26), transparent 70%),
+    radial-gradient(95% 62% at 50% 40%, var(--stage-100) 0%, var(--stage-200) 34%, var(--stage-400) 70%, var(--stage-600) 100%);
+  color: var(--on-stage);
+  z-index: var(--z-stage);
+}
+
+/* rim light: a 1.5px edge that burns gold at the crown and dies by mid-height */
+.lr-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(180deg, var(--rim-gold) 0%, rgb(201 137 63 / 0.6) 22%, rgb(201 137 63 / 0.12) 48%, transparent 62%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* arch echo: the inner band from the printed cover, as a faint gold hairline */
+.lr-stage::after {
+  content: "";
+  position: absolute;
+  inset: 12px 12px 30% 12px;
+  border: 1px solid rgb(232 194 126 / 0.2);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / calc((50cqi - 12px) * var(--arch-rise)) calc((50cqi - 12px) * var(--arch-rise)) 0 0;
+  -webkit-mask: linear-gradient(#000 0%, transparent 85%);
+  mask: linear-gradient(#000 0%, transparent 85%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- tilted ribbed travertine floor ---------- */
+.lr-stage__floor {
+  position: absolute;
+  left: -45%;
+  right: -45%;
+  bottom: 0;
+  height: 64%;
+  transform-origin: 50% 100%;
+  transform: perspective(480px) rotateX(42deg);   /* steeper than ~50deg collapses the floor to a sliver */
+  background:
+    radial-gradient(26% 30% at 50% 52%, rgb(232 194 126 / 0.34), transparent 72%),           /* pool of light under the plate */
+    repeating-linear-gradient(90deg, rgb(255 236 205 / 0.2) 0 1.5px, transparent 1.5px 24px), /* ribs: converge in perspective */
+    repeating-linear-gradient(0deg, rgb(0 0 0 / 0.16) 0 1px, transparent 1px 6px,
+                              rgb(255 238 210 / 0.05) 6px 8px, transparent 8px 15px),          /* travertine bedding */
+    linear-gradient(0deg, #7A6249 0%, var(--travertine-lo) 26%, #3E2A1D 55%, var(--stage-500) 85%);
+  -webkit-mask: linear-gradient(0deg, #000 30%, transparent 88%);
+  mask: linear-gradient(0deg, #000 30%, transparent 88%);
+  z-index: 0;
+}
+
+/* ---------- headline: big, behind the plate (Kumo layering) ---------- */
+.lr-stage__eyebrow {
+  position: absolute;
+  top: 15%;
+  inset-inline: 0;
+  margin: 0;
+  text-align: center;
+  font: var(--fw-label) var(--fs-eyebrow) / 1 var(--font-display);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--on-stage-gold);
+  z-index: 2;
+}
+
+.lr-stage__title {
+  position: absolute;
+  top: 20%;
+  inset-inline: var(--sp-4);
+  margin: 0;
+  text-align: center;
+  font: var(--fw-stage-name) var(--fs-stage-name) / var(--lh-title) var(--font-display);
+  letter-spacing: var(--tr-title);
+  color: var(--on-stage);
+  text-shadow: 0 0 24px rgb(232 194 126 / 0.25), 0 2px 0 rgb(20 4 0 / 0.5);
+  text-wrap: balance;
+  z-index: 2;
+}
+
+/* ---------- plate + contact shadow ---------- */
+.lr-stage__shadow {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--plate-y) + var(--plate-size) * 0.97);
+  width: calc(var(--plate-size) * 0.92);
+  height: calc(var(--plate-size) * 0.18);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.78), rgb(0 0 0 / 0.38) 55%, transparent 100%);
+  filter: blur(5px);
+  z-index: 3;
+}
+
+.lr-plate {
+  position: absolute;
+  left: 50%;
+  top: var(--plate-y);
+  width: var(--plate-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  translate: -50% 0;
+  transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  box-shadow: var(--sh-plate), 0 0 0 1px rgb(232 194 126 / 0.18);
+  background: var(--lr-parchment-note);
+  z-index: 4;
+  will-change: transform;
+}
+.lr-plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lr-plate::after {                       /* rim light on the plate, top-left, plus floor bounce */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(65% 55% at 28% 18%, rgb(255 236 210 / 0.2), transparent 62%),
+    radial-gradient(90% 60% at 50% 105%, rgb(30 6 0 / 0.35), transparent 60%);
+  box-shadow: inset 0 1.5px 0 rgb(255 226 180 / 0.55);
+  pointer-events: none;
+}
+
+/* designed placeholder plate: parchment disc, laurel ring, category icon */
+.lr-plate--placeholder {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, var(--lr-parchment) 0 52%, #F1E6D2 70%, var(--lr-parchment-deep) 100%);
+  color: var(--lr-red);
+}
+.lr-plate--placeholder > .lr-plate__laurel { position: absolute; inset: 9%; width: 82%; height: 82%; color: var(--lr-gold); }
+.lr-plate--placeholder > .lr-plate__icon { width: 34%; height: 34%; stroke-width: 1.25; }
+
+/* ---------- squircle (superellipse n=5) ---------- */
+.lr-squircle {
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 width=%22100%22 height=%22100%22%3E%3Cpath d=%22M100 50L99.96 66.8L99.83 72.14L99.61 76.01L99.31 79.12L98.92 81.75L98.44 84.05L97.87 86.08L97.2 87.89L96.44 89.52L95.58 91L94.61 92.33L93.53 93.53L92.33 94.61L91 95.58L89.52 96.44L87.89 97.2L86.08 97.87L84.05 98.44L81.75 98.92L79.12 99.31L76.01 99.61L72.14 99.83L66.8 99.96L50 100L33.2 99.96L27.86 99.83L23.99 99.61L20.88 99.31L18.25 98.92L15.95 98.44L13.92 97.87L12.11 97.2L10.48 96.44L9 95.58L7.67 94.61L6.47 93.53L5.39 92.33L4.42 91L3.56 89.52L2.8 87.89L2.13 86.08L1.56 84.05L1.08 81.75L0.69 79.12L0.39 76.01L0.17 72.14L0.04 66.8L0 50L0.04 33.2L0.17 27.86L0.39 23.99L0.69 20.88L1.08 18.25L1.56 15.95L2.13 13.92L2.8 12.11L3.56 10.48L4.42 9L5.39 7.67L6.47 6.47L7.67 5.39L9 4.42L10.48 3.56L12.11 2.8L13.92 2.13L15.95 1.56L18.25 1.08L20.88 0.69L23.99 0.39L27.86 0.17L33.2 0.04L50 0L66.8 0.04L72.14 0.17L76.01 0.39L79.12 0.69L81.75 1.08L84.05 1.56L86.08 2.13L87.89 2.8L89.52 3.56L91 4.42L92.33 5.39L93.53 6.47L94.61 7.67L95.58 9L96.44 10.48L97.2 12.11L97.87 13.92L98.44 15.95L98.92 18.25L99.31 20.88L99.61 23.99L99.83 27.86L99.96 33.2Z%22 fill=%22%23000%22/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 width=%22100%22 height=%22100%22%3E%3Cpath d=%22M100 50L99.96 66.8L99.83 72.14L99.61 76.01L99.31 79.12L98.92 81.75L98.44 84.05L97.87 86.08L97.2 87.89L96.44 89.52L95.58 91L94.61 92.33L93.53 93.53L92.33 94.61L91 95.58L89.52 96.44L87.89 97.2L86.08 97.87L84.05 98.44L81.75 98.92L79.12 99.31L76.01 99.61L72.14 99.83L66.8 99.96L50 100L33.2 99.96L27.86 99.83L23.99 99.61L20.88 99.31L18.25 98.92L15.95 98.44L13.92 97.87L12.11 97.2L10.48 96.44L9 95.58L7.67 94.61L6.47 93.53L5.39 92.33L4.42 91L3.56 89.52L2.8 87.89L2.13 86.08L1.56 84.05L1.08 81.75L0.69 79.12L0.39 76.01L0.17 72.14L0.04 66.8L0 50L0.04 33.2L0.17 27.86L0.39 23.99L0.69 20.88L1.08 18.25L1.56 15.95L2.13 13.92L2.8 12.11L3.56 10.48L4.42 9L5.39 7.67L6.47 6.47L7.67 5.39L9 4.42L10.48 3.56L12.11 2.8L13.92 2.13L15.95 1.56L18.25 1.08L20.88 0.69L23.99 0.39L27.86 0.17L33.2 0.04L50 0L66.8 0.04L72.14 0.17L76.01 0.39L79.12 0.69L81.75 1.08L84.05 1.56L86.08 2.13L87.89 2.8L89.52 3.56L91 4.42L92.33 5.39L93.53 6.47L94.61 7.67L95.58 9L96.44 10.48L97.2 12.11L97.87 13.92L98.44 15.95L98.92 18.25L99.31 20.88L99.61 23.99L99.83 27.86L99.96 33.2Z%22 fill=%22%23000%22/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+@supports (corner-shape: squircle) {
+  .lr-squircle {
+    -webkit-mask: none;
+    mask: none;
+    border-radius: 50%;
+    corner-shape: squircle;
+  }
+}
+
+/* ---------- floating option tiles ---------- */
+.lr-tile {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--tile-size);
+  height: var(--tile-size);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  translate: -50% -50%;
+  filter: drop-shadow(0 12px 10px rgb(10 2 0 / 0.55)) drop-shadow(0 1px 1px rgb(10 2 0 / 0.4));
+  animation: lr-float 3.6s var(--float-delay, 0s) ease-in-out infinite alternate;
+  z-index: var(--z-tiles);
+  -webkit-tap-highlight-color: transparent;
+}
+.lr-tile__face {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, var(--lr-parchment) 0%, var(--lr-parchment-note) 55%, var(--lr-parchment-deep) 100%);
+  box-shadow: inset 0 0 0 1px rgb(146 117 79 / 0.35);
+  transition: scale var(--dur-instant) var(--ease-roman);
+}
+.lr-tile__thumb { width: var(--tile-thumb); height: var(--tile-thumb); border-radius: 50%; object-fit: cover; }
+.lr-tile:active .lr-tile__face { scale: 0.92; }
+.lr-tile[aria-pressed="true"] .lr-tile__face { box-shadow: inset 0 0 0 2px var(--rim-gold), inset 0 0 0 4px var(--lr-parchment); }
+.lr-tile:focus-visible { outline: none; }
+.lr-tile:focus-visible .lr-tile__face { box-shadow: inset 0 0 0 2px var(--lr-red), inset 0 0 0 4px var(--lr-parchment); }
+
+@keyframes lr-float {
+  from { transform: translateY(-3px) rotate(-1.5deg); }
+  to   { transform: translateY(4px) rotate(1.5deg); }
+}
+
+/* ---------- glassy label card ---------- */
+.lr-glass {
+  background: var(--glass-fill), var(--glass-tint);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--r-md);
+  box-shadow: inset 0 1px 0 rgb(255 240 220 / 0.25), 0 12px 24px -16px rgb(0 0 0 / 0.8);
+  color: var(--on-stage);
+  padding: var(--sp-2) var(--sp-3);
+}
+.lr-stage__card {
+  position: absolute;
+  left: var(--sp-4);
+  bottom: var(--sp-5);
+  max-width: 52%;
+  z-index: var(--z-label);
+}
+.lr-glass__kicker {
+  display: block;
+  font: var(--fw-label) var(--fs-label) / 1.2 var(--font-price);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--on-stage-gold);
+}
+.lr-glass__text {
+  display: block;
+  margin-top: 2px;
+  font: italic var(--fw-desc) 0.8125rem / 1.35 var(--font-desc);
+  color: var(--on-stage-mute);
+}
+
+/* ---------- price pill ---------- */
+.lr-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.08em;
+  padding: 0.28em 0.75em 0.32em;
+  border-radius: var(--r-pill);
+  background: linear-gradient(180deg, var(--lr-red-bright), var(--lr-red) 60%, var(--lr-red-deep));
+  color: var(--lr-parchment);
+  font: var(--fw-price) var(--fs-price) / 1 var(--font-price);
+  letter-spacing: var(--tr-price);
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--sh-pill);
+  white-space: nowrap;
+}
+.lr-pill__cur { font-weight: 600; font-size: 0.86em; }
+.lr-stage__price {
+  position: absolute;
+  right: var(--sp-4);
+  bottom: var(--sp-5);
+  font-size: var(--fs-price-hero);
+  border: 1px solid rgb(232 194 126 / 0.5);
+  z-index: var(--z-label);
+}
+
+/* stage text button (Anatomia) */
+.lr-stage-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 44px;
+  padding: 0 var(--sp-4);
+  border-radius: var(--r-pill);
+  border: 1px solid rgb(232 194 126 / 0.55);
+  background: rgb(21 6 5 / 0.35);
+  color: var(--rim-gold);
+  font: 600 var(--fs-eyebrow) / 1 var(--font-display);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.lr-stage-btn:focus-visible { outline: none; box-shadow: var(--sh-focus-stage); }
+
+/* =====================================================================
+   Ornament utilities (parchment side)
+   ===================================================================== */
+
+/* scalloped double hairline frame. Put on any positioned container. */
+.lr-frame { position: relative; }
+.lr-frame::before {
+  content: "";
+  position: absolute;
+  inset: var(--frame-inset);
+  border: 32px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 96 96%22 width=%2296%22 height=%2296%22 fill=%22none%22%3E%3Cpath d=%22M14.97 1H81.03A15 15 0 0 0 95 14.97V81.03A15 15 0 0 0 81.03 95H14.97A15 15 0 0 0 1 81.03V14.97A15 15 0 0 0 14.97 1Z%22 stroke=%22%2392754F%22 stroke-width=%221%22/%3E%3Cpath d=%22M19.97 6.5H76.03A21 21 0 0 0 89.5 19.97V76.03A21 21 0 0 0 76.03 89.5H19.97A21 21 0 0 0 6.5 76.03V19.97A21 21 0 0 0 19.97 6.5Z%22 stroke=%22%2392754F%22 stroke-width=%22.75%22/%3E%3Cpath d=%22M5.2 3.4L7 5.2L5.2 7L3.4 5.2ZM90.8 3.4L92.6 5.2L90.8 7L89 5.2ZM5.2 89L7 90.8L5.2 92.6L3.4 90.8ZM90.8 89L92.6 90.8L90.8 92.6L89 90.8Z%22 fill=%22%2392754F%22/%3E%3C/svg%3E") 32 / 32px stretch;
+  pointer-events: none;
+}
+
+/* gold rule ending in a diamond. Draw-in: animate --rule from 0 to 1. */
+@property --rule { syntax: "<number>"; inherits: true; initial-value: 1; }
+.lr-rule {
+  position: relative;
+  height: 10px;
+  margin-right: 6px;
+  background: linear-gradient(var(--lr-gold), var(--lr-gold)) left center / calc(var(--rule) * (100% - 8px)) 1px no-repeat;
+}
+.lr-rule::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--rule) * (100% - 8px));
+  width: 6px;
+  height: 6px;
+  background: var(--lr-gold);
+  transform: translate(0, -50%) rotate(45deg) scale(var(--rule));
+}
+
+/* dotted leader between name and price. Draw-in: animate clip-path inset right 100% -> 0 */
+.lr-leader {
+  flex: 1 1 auto;
+  min-width: var(--sp-4);
+  height: 1em;
+  margin: 0 var(--sp-2);
+  align-self: baseline;
+  background: radial-gradient(circle, rgb(146 117 79 / 0.7) 0 0.9px, transparent 1.3px) left bottom 0.18em / 6px 6px repeat-x;
+  clip-path: inset(0 0 0 0);
+}
+
+/* indicator pips: round arch idle, flattened Roman arch when active */
+.lr-pip {
+  display: block;
+  width: 8px;
+  height: 12px;
+  border: 1.25px solid var(--lr-gold);
+  border-radius: 50% 50% 1px 1px / 4px 4px 1px 1px;
+  background: transparent;
+  transition: width var(--dur-base) var(--ease-roman), background-color var(--dur-quick) linear, border-color var(--dur-quick) linear;
+}
+.lr-pip[aria-current="page"] {
+  width: 22px;
+  border-color: var(--lr-red);
+  background: var(--lr-red);
+  border-radius: 50% 50% 1px 1px / 7px 7px 1px 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lr-tile { animation: none; }
+  .lr-pip, .lr-tile__face { transition-duration: 1ms; }
+}
