@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { slug } from '../../lib/slug';
 import type { ResolvedPhoto } from '../../lib/photos';
 import type { Item } from '../../types';
@@ -13,6 +13,8 @@ interface PhotoFrameProps {
   geom: PlateGeom;
   eager?: boolean;
   className?: string;
+  /** Style for the <img> itself (Anatomia clips it to one region with clip-path). */
+  imgStyle?: CSSProperties;
   /** Rendered in PHOTO space (percent of the frame = fractions of the image), e.g. region rings. */
   children?: ReactNode;
 }
@@ -22,7 +24,7 @@ interface PhotoFrameProps {
  * Pure CSS: width is a percentage of the parent, the shift is a percentage of the frame itself, so no image size is needed.
  * Because only the circle is shown, the white rounded corners baked into tyulah-itum, bulalo and halo-halo never appear.
  */
-export function PhotoFrame({ file, alt, geom, eager = false, className, children }: PhotoFrameProps) {
+export function PhotoFrame({ file, alt, geom, eager = false, className, imgStyle, children }: PhotoFrameProps) {
   const f = cropFrame(geom);
   return (
     <div
@@ -35,6 +37,7 @@ export function PhotoFrame({ file, alt, geom, eager = false, className, children
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         draggable={false}
+        style={imgStyle}
       />
       {children}
     </div>

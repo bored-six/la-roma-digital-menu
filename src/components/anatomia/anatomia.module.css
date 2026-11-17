@@ -1,0 +1,453 @@
+/* Anatomia: a light technical plate on a dark backdrop. Parchment sheet in the arch shape of the stage, hairline gold frame,
+   ink linework, Roman red only for the number and the picked layer. Tokens from design-system/tokens.css. */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-anatomia);
+  display: grid;
+  place-items: center;
+  padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+  background: radial-gradient(120% 80% at 50% 0%, rgb(110 28 16 / 0.82), rgb(21 6 5 / 0.94));
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.sheet {
+  pointer-events: none; /* the arch corners are transparent: a tap there is a tap on the backdrop */
+  container-type: inline-size;
+  width: min(100%, 420px);
+  max-height: 100%;
+}
+
+.panel {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100dvh - 16px);
+  overflow: hidden;
+  background: var(--lr-parchment);
+  color: var(--lr-ink);
+  border-radius: 50% 50% var(--r-lg) var(--r-lg) / calc(50cqi * var(--arch-rise)) calc(50cqi * var(--arch-rise)) var(--r-lg) var(--r-lg);
+  box-shadow:
+    0 40px 80px -30px rgb(0 0 0 / 0.85),
+    0 0 0 1px rgb(232 194 126 / 0.45);
+}
+/* the printed frame, as a single hairline following the arch, with the diamond at the crown */
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgb(146 117 79 / 0.55);
+  border-radius: 50% 50% calc(var(--r-lg) - 6px) calc(var(--r-lg) - 6px) / calc((50cqi - 9px) * var(--arch-rise)) calc((50cqi - 9px) * var(--arch-rise)) calc(var(--r-lg) - 6px)
+    calc(var(--r-lg) - 6px);
+  pointer-events: none;
+}
+.panel::after {
+  content: '';
+  position: absolute;
+  top: 6.5px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  translate: -50% 0;
+  rotate: 45deg;
+  background: var(--lr-gold);
+  pointer-events: none;
+}
+
+.head {
+  flex: none;
+  padding: 40px 40px 0;
+  text-align: center;
+}
+.eyebrow {
+  margin: 0;
+  font: 600 var(--fs-eyebrow) / 1 var(--font-display);
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+  color: var(--lr-gold-text);
+}
+.title {
+  margin: 8px 0 0;
+  font: var(--fw-title) 1.625rem / var(--lh-title) var(--font-display);
+  letter-spacing: var(--tr-title);
+  color: var(--lr-ink);
+  text-wrap: balance;
+}
+
+.close {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgb(146 117 79 / 0.6);
+  border-radius: 50%;
+  background: rgb(250 245 237 / 0.92);
+  color: var(--lr-ink);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-quick) var(--ease-roman),
+    color var(--dur-quick) var(--ease-roman),
+    scale var(--dur-instant) var(--ease-roman);
+}
+.close svg {
+  width: 18px;
+  height: 18px;
+}
+.close:hover {
+  background: var(--lr-red);
+  border-color: var(--lr-red);
+  color: var(--lr-parchment);
+}
+.close:active {
+  scale: 0.94;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.close:focus-visible,
+.label:focus-visible,
+.flatItem:focus-visible,
+.scene:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-focus);
+}
+
+/* ---------- the exploded view ---------- */
+
+.view {
+  position: relative;
+  flex: none;
+  height: clamp(350px, 54dvh, 450px);
+  margin-top: 6px;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.view:active {
+  cursor: grabbing;
+}
+/* technical-drawing grid, fading out toward the edges */
+.view::before {
+  content: '';
+  position: absolute;
+  inset: 0 12px;
+  background-image:
+    linear-gradient(rgb(146 117 79 / 0.13) 1px, transparent 1px), linear-gradient(90deg, rgb(146 117 79 / 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: center;
+  -webkit-mask: radial-gradient(60% 55% at 50% 60%, #000 20%, transparent 100%);
+  mask: radial-gradient(60% 55% at 50% 60%, #000 20%, transparent 100%);
+  pointer-events: none;
+}
+
+.scene {
+  position: absolute;
+  border-radius: 50%;
+}
+.tilt,
+.spin {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.base {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--lr-parchment-note);
+  box-shadow:
+    0 0 0 1px rgb(146 117 79 / 0.55),
+    0 18px 28px -14px rgb(60 30 10 / 0.5);
+}
+/* a parchment veil: the base is the "before", the layers above it are the "parts" */
+.veil {
+  position: absolute;
+  inset: 0;
+  background: rgb(250 245 237 / 0.5);
+  pointer-events: none;
+}
+.ground {
+  position: absolute;
+  inset: -9px;
+  border-radius: 50%;
+  border: 1px dashed rgb(146 117 79 / 0.55);
+  pointer-events: none;
+}
+.baseRing {
+  position: absolute;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 1px dashed rgb(28 22 18 / 0.5);
+  z-index: 1;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 3px 3px rgb(40 20 10 / 0.28));
+}
+.layerRing {
+  position: absolute;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 2px solid var(--rim-amber);
+  box-shadow: 0 0 0 1px var(--lr-parchment);
+  opacity: 0;
+  transition: opacity var(--dur-quick) var(--ease-roman);
+  pointer-events: none;
+}
+.layer[data-active] .layerRing {
+  opacity: 1;
+}
+
+/* ---------- callouts ---------- */
+
+.leaders {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.callout {
+  transition: opacity var(--dur-quick) var(--ease-roman);
+}
+.callout[data-dim] {
+  opacity: 0.35;
+}
+.stem {
+  stroke: var(--lr-gold);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  fill: none;
+}
+.foot {
+  fill: var(--lr-parchment);
+  stroke: var(--lr-ink-soft);
+  stroke-width: 1;
+}
+.leader {
+  stroke: var(--lr-ink-soft);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.dot {
+  fill: var(--lr-ink);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.callout[data-active] .leader {
+  stroke: var(--lr-red);
+}
+.callout[data-active] .dot {
+  fill: var(--lr-red);
+}
+.callout[data-active] .stem {
+  stroke: var(--lr-red);
+}
+
+.label {
+  position: absolute;
+  display: block;
+  min-height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-xs);
+  background: none;
+  color: var(--lr-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: opacity var(--dur-quick) var(--ease-roman);
+  -webkit-tap-highlight-color: transparent;
+}
+.label[data-side='left'] {
+  text-align: right;
+}
+.label[data-dim] {
+  opacity: 0.45 !important;
+}
+/* a parchment halo keeps the type readable when a wide cut-out passes behind it */
+.num,
+.name {
+  text-shadow:
+    0 0 2px var(--lr-parchment),
+    0 0 5px var(--lr-parchment),
+    0 0 9px var(--lr-parchment);
+}
+.num {
+  display: block;
+  font: 600 var(--fs-label) / 1 var(--font-price);
+  letter-spacing: var(--tr-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--lr-red);
+}
+.name {
+  display: block;
+  margin-top: 3px;
+  font: var(--fw-name) 0.78rem / 1.18 var(--font-name);
+  font-variation-settings: 'opsz' 13;
+  letter-spacing: -0.003em;
+  color: var(--lr-ink);
+  text-decoration: underline transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur-quick) var(--ease-roman);
+}
+.label[aria-pressed='true'] .name {
+  color: var(--lr-red);
+  text-decoration-color: var(--lr-gold);
+}
+
+/* ---------- note under the view ---------- */
+
+.note {
+  flex: none;
+  min-height: 92px;
+  padding: 6px 30px 84px;
+  text-align: center;
+}
+.noteKicker {
+  display: block;
+  font: 600 var(--fs-label) / 1.2 var(--font-price);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--lr-gold-text);
+}
+.noteText {
+  display: block;
+  margin-top: 4px;
+  font: italic var(--fw-desc) var(--fs-desc) / 1.4 var(--font-desc);
+  color: var(--lr-ink-soft);
+}
+
+/* ---------- flat view (reduced motion): the labelled list, rings on the photo ---------- */
+
+.flat {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px 26px 88px; /* room for the close button */
+  touch-action: pan-y;
+}
+.flatPhoto {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-height: 300px;
+  margin: 0 auto;
+  border-radius: var(--r-md);
+  background: var(--lr-parchment-note);
+  box-shadow: 0 0 0 1px rgb(146 117 79 / 0.55);
+}
+.flatFrame {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.flatFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+}
+.flatRing {
+  position: absolute;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 1.5px solid var(--lr-parchment);
+  box-shadow:
+    0 0 0 1px rgb(28 22 18 / 0.55),
+    inset 0 0 0 1px rgb(28 22 18 / 0.35);
+  transition: opacity var(--dur-quick) linear;
+}
+.flatRing[data-active] {
+  border-color: var(--rim-amber);
+  box-shadow: 0 0 0 2px var(--lr-parchment);
+}
+.flatRing[data-dim] {
+  opacity: 0.35;
+}
+.flatBadge {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  translate: -50% -55%;
+  min-width: 18px;
+  padding: 3px 4px 2px;
+  border-radius: var(--r-pill);
+  background: var(--lr-parchment);
+  box-shadow: 0 0 0 1px rgb(28 22 18 / 0.5);
+  font: 600 10px / 1 var(--font-price);
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--lr-red);
+}
+.flatList {
+  display: grid;
+  gap: 2px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.flatItem {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 2px 8px;
+  width: 100%;
+  padding: 9px 6px;
+  border: 0;
+  border-bottom: 1px solid rgb(146 117 79 / 0.3);
+  border-radius: 0;
+  background: none;
+  color: var(--lr-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.flatItem[aria-pressed='true'] {
+  background: var(--lr-parchment-note);
+}
+.flatItem .num {
+  grid-row: 1 / span 2;
+  padding-top: 3px;
+}
+.flatItem .name {
+  margin: 0;
+  font-size: 1rem;
+}
+.flatDetail {
+  grid-column: 2;
+  font: italic var(--fw-desc) var(--fs-desc) / 1.35 var(--font-desc);
+  color: var(--lr-ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callout,
+  .label,
+  .layerRing,
+  .close,
+  .name {
+    transition-duration: 1ms;
+  }
+}

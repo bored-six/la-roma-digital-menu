@@ -13,6 +13,9 @@ import {
   assignSides,
   clampRot,
   layerLift,
+  rectAspect,
+  rectFrame,
+  regionsBounds,
   planOffset,
   project,
   rotFromDrag,
@@ -134,6 +137,18 @@ describe('layerLift', () => {
   it('uses the full 40px gap for small stacks', () => {
     expect(layerLift(3)).toBe(40);
   });
+
+  it('takes a bigger budget and cap when the view has the room, but still never exceeds either', () => {
+    expect(layerLift(4, 400, 56)).toBe(56);
+    expect(layerLift(6, 270, 56)).toBeCloseTo(45, 9);
+    expect(layerLift(6, 270, 56) * 6).toBeLessThanOrEqual(270 + 1e-9);
+    expect(layerLift(4, 400, 56)).toBeGreaterThan(layerLift(4));
+  });
+
+  it('never goes under 20px even with a tiny budget, and survives 0 layers', () => {
+    expect(layerLift(6, 30, 56)).toBe(20);
+    expect(layerLift(0)).toBe(40);
+  });
 });
 
 describe('assignSides', () => {
@@ -200,5 +215,47 @@ describe('spreadLabels', () => {
   it('handles 0 and 1 label', () => {
     expect(spreadLabels([], opts)).toEqual([]);
     expect(spreadLabels([-30], opts)).toEqual([0]);
+  });
+});
+
+describe('regionsBounds (the crop for the flat, reduced-motion view)', () => {
+  const r = (cx: number, cy: number, rx: number, ry: number) => ({ label: 'x', cx, cy, rx, ry });
+
+  it('is the box around every ellipse', () => {
+    const b = regionsBounds([r(0.3, 0.4, 0.1, 0.1), r(0.6, 0.5, 0.1, 0.2)], 0);
+    expect(b.x0).toBeCloseTo(0.2, 9);
+    expect(b.x1).toBeCloseTo(0.7, 9);
+    expect(b.y0).toBeCloseTo(0.3, 9);
+    expect(b.y1).toBeCloseTo(0.7, 9);
+  });
+
+  it('adds the margin on every side and never leaves the photo', () => {
+    const b = regionsBounds([r(0.1, 0.1, 0.08, 0.08), r(0.9, 0.95, 0.08, 0.04)], 0.05);
+    expect(b.x0).toBe(0);
+    expect(b.y0).toBe(0);
+    expect(b.x1).toBe(1);
+    expect(b.y1).toBe(1);
+  });
+});
+
+describe('rectFrame / rectAspect', () => {
+  const box = { x0: 0.2, y0: 0.3, x1: 0.7, y1: 0.7 };
+
+  it('lands the box exactly on the container (same maths as the browser: % of container, % of own size)', () => {
+    const f = rectFrame(box);
+    const C = 100; // container width px
+    const frameW = (C * f.widthPct) / 100;
+    const left = (frameW * f.shiftXPct) / 100;
+    expect(left + box.x0 * frameW).toBeCloseTo(0, 9);
+    expect(left + box.x1 * frameW).toBeCloseTo(C, 9);
+    // vertical: with photo 900x450 the frame is frameW/2 tall; the box must start at the container top
+    const frameH = frameW * 0.5;
+    const top = (frameH * f.shiftYPct) / 100;
+    expect(top + box.y0 * frameH).toBeCloseTo(0, 9);
+    expect(top + box.y1 * frameH).toBeCloseTo(rectAspect(box, 900, 450) ** -1 * C, 9);
+  });
+
+  it('aspect is the box in pixels: 0.5 of 900 wide over 0.4 of 450 tall', () => {
+    expect(rectAspect(box, 900, 450)).toBeCloseTo((0.5 * 900) / (0.4 * 450), 9);
   });
 });

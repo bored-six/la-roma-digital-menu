@@ -1,5 +1,6 @@
 // Pure maths for Anatomia: rotation limits, the 3D projection used to draw leader lines, label placement.
 // No React, no DOM. Unit-tested in anatomiaLogic.test.ts.
+import type { AnatomyRegion } from '../../types';
 import type { PlateGeom } from '../stage/stageLogic';
 
 // ---------- rotation (spec section 5) ----------
@@ -70,10 +71,13 @@ export function planOffset(
   return { x: (region.cx - plate.cx) * frameW, y: (region.cy - plate.cy) * frameH };
 }
 
-/** Z gap between layers: 40px for small stacks, shrinking so the whole stack stays <= 170px, never under 20px. */
-export function layerLift(layers: number): number {
-  if (layers <= 0) return 40;
-  return Math.max(20, Math.min(40, 170 / layers));
+/**
+ * Z gap between layers. Defaults: up to 40px (spec section 5), shrinking so the whole stack stays <= `budget` px, never under 20px.
+ * Anatomia passes the height actually available in the view and a higher cap, so the parts separate as far as the screen allows.
+ */
+export function layerLift(layers: number, budget = 170, cap = 40): number {
+  if (layers <= 0) return Math.min(cap, 40);
+  return Math.max(20, Math.min(cap, budget / layers));
 }
 
 // ---------- labels ----------
@@ -137,4 +141,43 @@ export function spreadLabels(ideal: readonly number[], opts: { top: number; bott
     out[idx] = ys[rank]!;
   });
   return out;
+}
+
+// ---------- flat view crop (reduced motion) ----------
+
+export interface Box {
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+}
+
+/** The box around every region ellipse plus `margin` (fractions of the photo), kept inside the photo. */
+export function regionsBounds(regions: readonly Pick<AnatomyRegion, 'cx' | 'cy' | 'rx' | 'ry'>[], margin: number): Box {
+  let x0 = 1;
+  let y0 = 1;
+  let x1 = 0;
+  let y1 = 0;
+  for (const r of regions) {
+    x0 = Math.min(x0, r.cx - r.rx);
+    x1 = Math.max(x1, r.cx + r.rx);
+    y0 = Math.min(y0, r.cy - r.ry);
+    y1 = Math.max(y1, r.cy + r.ry);
+  }
+  return {
+    x0: Math.max(0, x0 - margin),
+    y0: Math.max(0, y0 - margin),
+    x1: Math.min(1, x1 + margin),
+    y1: Math.min(1, y1 + margin),
+  };
+}
+
+/** CSS numbers that show only `box` of a photo in a container: frame at left:0; top:0; width widthPct%; translate(shiftX%, shiftY%). */
+export function rectFrame(box: Box): { widthPct: number; shiftXPct: number; shiftYPct: number } {
+  return { widthPct: 100 / (box.x1 - box.x0), shiftXPct: -box.x0 * 100, shiftYPct: -box.y0 * 100 };
+}
+
+/** width / height of the box in pixels, for the container's aspect-ratio. */
+export function rectAspect(box: Box, imgW: number, imgH: number): number {
+  return ((box.x1 - box.x0) * imgW) / ((box.y1 - box.y0) * imgH);
 }
