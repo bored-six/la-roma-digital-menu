@@ -128,3 +128,21 @@ describe('pickTiles', () => {
     expect(frozen.map((i) => i.id)).toEqual(MIXED.map((i) => i.id));
   });
 });
+
+// Added by Lane 1: defaultSelectedId (first item with a resolvable photo, else first item, else null).
+import { defaultSelectedId } from './tiles';
+
+describe('defaultSelectedId', () => {
+  it('picks the first item that has a photo, even when photo-less items come before it', () => {
+    expect(defaultSelectedId(MIXED, PHOTOS)).toBe(p1.id);
+    expect(defaultSelectedId([n1, n2, p2, p3], PHOTOS)).toBe(p2.id);
+  });
+
+  it('falls back to the first item when none has a photo', () => {
+    expect(defaultSelectedId([n1, n2, n3], {})).toBe(n1.id);
+  });
+
+  it('returns null for an empty list', () => {
+    expect(defaultSelectedId([], PHOTOS)).toBeNull();
+  });
+});
