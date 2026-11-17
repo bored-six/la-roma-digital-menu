@@ -578,8 +578,8 @@ button {
   margin-right: calc(var(--pad) * -1);
 }
 .row__line:has(.row__prices) .lr-leader {
-  min-width: 6px;
-  margin: 0 6px;
+  min-width: 0;
+  margin: 0 4px;
 }
 .row__prices .pill {
   justify-content: flex-end;
