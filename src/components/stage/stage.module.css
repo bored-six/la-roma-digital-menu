@@ -392,6 +392,11 @@
   opacity: 1;
   translate: 0 0;
 }
+/* the tile being pointed at rises above its neighbours, so its name chip is never hidden behind the next tile */
+.stage .tile:hover,
+.stage .tile:focus-visible {
+  z-index: calc(var(--z-tiles) + 1);
+}
 /* pressed: scale .96 (spec section 5), beats the .92 in stage.css by specificity */
 .stage .tile:active .face {
   scale: 0.96;

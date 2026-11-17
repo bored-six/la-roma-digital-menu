@@ -110,8 +110,9 @@ export const StageHeadline = forwardRef<HeadlineHandle, StageHeadlineProps>(func
     };
   }, [item.id, play, reduced]);
 
-  // The eyebrow already says the category / drinks subgroup, so the card's kicker is only for badges.
-  const kicker = item.badges.join(' · ');
+  // The eyebrow already says the category / drinks subgroup, so the card's kicker is only for badges that add something
+  // (Unli Rice items would otherwise say "Unli rice" twice).
+  const kicker = item.badges.filter((b) => b.toLowerCase() !== eyebrow.toLowerCase()).join(' · ');
   const variantLine = item.variants?.map((v) => `${v.label} ${formatPrice(v.price)}`).join(' · ') ?? '';
   const hasCard = kicker !== '' || variantLine !== '' || (item.description ?? '') !== '';
   const price = formatPrice(item.price);
