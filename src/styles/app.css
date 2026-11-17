@@ -335,11 +335,12 @@ button {
 .page__stage {
   margin: 0 0 26px;
   /* parallax: the stage drifts 24px with --p (written by the pager while swiping; absent under reduced motion).
-     It lives on this wrapper, not on StageSlot, so swapping in the real <Stage> keeps it. */
+     It lives on this wrapper, not inside <Stage>, which owns its own plate tilt. */
   translate: calc(var(--p, 0) * 24px) 0;
 }
 
 .page__foot {
+  display: block;
   width: 96px;
   height: 16px;
   margin: 30px auto 0;

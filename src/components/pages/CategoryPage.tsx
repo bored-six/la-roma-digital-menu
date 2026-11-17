@@ -4,10 +4,10 @@ import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { defaultSelectedId } from '../../lib/tiles';
 import type { Page, PhotoEntry } from '../../types';
 import { ItemList } from '../list/ItemList';
+import { Stage } from '../stage/Stage';
 import { Flourish } from '../ornaments/Svg';
 import { NoteLine } from './NoteLine';
 import { SectionTitle } from './SectionTitle';
-import { StageSlot } from './StageSlot';
 
 const PHOTOS = photosJson as Record<string, PhotoEntry>;
 
@@ -43,7 +43,7 @@ export const CategoryPage = memo(function CategoryPage({ page, active }: Categor
         {page.label}
       </h2>
       <div ref={stageRef} className="page__stage">
-        <StageSlot items={items} selectedId={selectedId} onSelect={onSelect} active={active} />
+        <Stage items={items} selectedId={selectedId} onSelect={onSelect} active={active} />
       </div>
       {page.categories.map((category) => {
         const titleId = `${page.id}-${category.id}-title`;
