@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FAF5ED" />
+    <meta name="description" content="La Roma Restaurant, Est. 2017. Filipino favourites, pizza and unli rice: the full menu." />
+    <title>La Roma Restaurant · Menu</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Cover LCP: the title face and the one arch image. Nothing else is preloaded. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/node_modules/@fontsource-variable/cinzel/files/cinzel-latin-wght-normal.woff2" />
+    <link
+      rel="preload"
+      as="image"
+      href="/brand/cover-arch-900.jpg"
+      imagesrcset="/brand/cover-arch-600.jpg 600w, /brand/cover-arch-900.jpg 900w"
+      imagesizes="(min-width: 430px) 320px, 80vw"
+      fetchpriority="high"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
