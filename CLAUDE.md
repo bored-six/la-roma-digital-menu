@@ -13,6 +13,9 @@ Source material: `reference/La_Roma_Menu_Messenger.pdf` (15 pages) and its page 
 - Smooth animation is a core requirement. Respect `prefers-reduced-motion`.
 - Mobile first (phone portrait is the primary screen), desktop must still look intentional.
 
+## Testing policy
+Light only (owner decision, 2026-11-18: it is just a landing page). One data-correctness test (menu items and prices vs. the PDF) plus the photo-files-exist check, a typecheck, and a production build. No full-scale suites, no Lighthouse runs. Visual quality is checked by eye in the browser at 390x844.
+
 ## Stack
 Not decided yet. Leaning: static site, no backend (menu lives in a typed data file). Decide after the open questions are answered, and record the choice here.
 
