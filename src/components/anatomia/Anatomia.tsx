@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { Draggable } from 'gsap/Draggable';
@@ -73,7 +73,15 @@ const DIM = 0.35;
  * reverse. Focus is trapped inside while open and returned to the opener after. With reduced motion there is no 3D: a flat photo with
  * numbered rings and the same labels as a list.
  */
-export function Anatomia({ item, photo, regions, onClose }: AnatomiaProps) {
+export interface AnatomiaOpenerProps extends AnatomiaProps {
+  /**
+   * The button that opened the sheet. Focus goes back to it on close. Safari does not focus a button on click, so
+   * `document.activeElement` at mount can be <body>: an explicit ref is the reliable way.
+   */
+  returnFocusRef?: RefObject<HTMLElement | null>;
+}
+
+export function Anatomia({ item, photo, regions, onClose, returnFocusRef }: AnatomiaOpenerProps) {
   const reduced = useReducedMotion();
   const m = useMemo(() => motion(reduced), [reduced]);
   const titleId = useId();
@@ -396,13 +404,18 @@ export function Anatomia({ item, photo, regions, onClose }: AnatomiaProps) {
   }, [requestClose, rotateTo, reduced]);
 
   // ---------- focus in, focus back ----------
+  const returnRef = useRef(returnFocusRef);
+  returnRef.current = returnFocusRef;
   useEffect(() => {
-    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const active = document.activeElement;
+    // Fallback for callers without a ref: whatever had focus, unless that is just <body> (Safari after a click).
+    const opener = active instanceof HTMLElement && active !== document.body ? active : null;
     closeRef.current?.focus({ preventScroll: true });
     return () => {
       openTl.current?.kill();
       rotTween.current?.kill();
-      if (opener?.isConnected) opener.focus({ preventScroll: true });
+      const back = returnRef.current?.current ?? opener;
+      if (back?.isConnected) back.focus({ preventScroll: true });
     };
   }, []);
 
