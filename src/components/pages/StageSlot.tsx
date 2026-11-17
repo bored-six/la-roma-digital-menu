@@ -7,7 +7,7 @@ import type { StageProps } from '../../types';
 export function StageSlot({ items, selectedId, active }: StageProps) {
   const selected = items.find((item) => item.id === selectedId) ?? items[0];
   return (
-    <div className="lr-stage-wrap stage-slot" data-active={active || undefined}>
+    <div className="lr-stage-wrap" data-active={active || undefined}>
       <section className="lr-stage" aria-label="Selected dish">
         <div className="lr-stage__floor" />
         <p className="lr-stage__eyebrow">La Roma</p>

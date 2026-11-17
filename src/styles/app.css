@@ -334,9 +334,8 @@ button {
 
 .page__stage {
   margin: 0 0 26px;
-}
-/* parallax: the stage drifts 24px with --p (written by the pager while swiping; absent under reduced motion) */
-.stage-slot {
+  /* parallax: the stage drifts 24px with --p (written by the pager while swiping; absent under reduced motion).
+     It lives on this wrapper, not on StageSlot, so swapping in the real <Stage> keeps it. */
   translate: calc(var(--p, 0) * 24px) 0;
 }
 
@@ -872,7 +871,7 @@ button {
   .closing__fb:active {
     transform: none;
   }
-  .stage-slot,
+  .page__stage,
   .section-title__text,
   .cover__arch-wrap {
     translate: none;
