@@ -1,6 +1,11 @@
 /* Anatomia: a light technical plate on a dark backdrop. Parchment sheet in the arch shape of the stage, hairline gold frame,
    ink linework, Roman red only for the number and the picked layer. Tokens from design-system/tokens.css. */
 
+.backdrop,
+.backdrop * {
+  box-sizing: border-box; /* sizes below assume it, with or without the app's global reset */
+}
+
 .backdrop {
   position: fixed;
   inset: 0;
