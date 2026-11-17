@@ -1,0 +1,205 @@
+{
+  "all-meat-overload": {
+    "file": "dishes/all-meat-overload.jpg",
+    "alt": "Pizza with pepperoni, ground meat and chicken pieces on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.5, "r": 0.445 }
+  },
+  "bam-e": {
+    "file": "dishes/bam-e.jpg",
+    "alt": "Stir-fried egg noodles and glass noodles with vegetables on a plate, with a tapsilog plate above it",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.681, "r": 0.31 }
+  },
+  "bangsilog": {
+    "file": "dishes/bangsilog.jpg",
+    "alt": "Garlic fried rice with fried milkfish, a sunny-side-up egg, tomato and a small vinegar dip on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.539, "cy": 0.505, "r": 0.385 }
+  },
+  "barako-brewed-coffee": {
+    "file": "dishes/barako-brewed-coffee.jpg",
+    "alt": "Cup of black brewed coffee on a saucer, with a cup of hot chocolate below it",
+    "alsoFor": ["hot-choco"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.342, "r": 0.265 }
+  },
+  "bulalo": {
+    "file": "dishes/bulalo.jpg",
+    "alt": "Beef shank and bone-marrow soup with corn and cabbage in a white bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.469, "cy": 0.5, "r": 0.21 }
+  },
+  "calamares": {
+    "file": "dishes/calamares.jpg",
+    "alt": "Fried squid rings with a dip and two calamansi halves on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.497, "cy": 0.491, "r": 0.419 }
+  },
+  "cheese-stick": {
+    "file": "dishes/cheese-stick.jpg",
+    "alt": "Fried cheese sticks arranged around a dipping sauce on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.499, "cy": 0.496, "r": 0.448 }
+  },
+  "chicken-bbq": {
+    "file": "dishes/chicken-bbq.jpg",
+    "alt": "Grilled chicken BBQ on a skewer with rice on a plate, with a bowl of pinakbet below it",
+    "alsoFor": ["pinakbet"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.324, "r": 0.285 }
+  },
+  "chicksilog": {
+    "file": "dishes/chicksilog.jpg",
+    "alt": "Garlic fried rice with two fried chicken drumsticks, a sunny-side-up egg and tomato slices on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.5, "r": 0.343 }
+  },
+  "crispy-pata-regular": {
+    "file": "dishes/crispy-pata-regular.jpg",
+    "alt": "Deep-fried crispy pata with soy dipping sauce on a plate, with a sizzling pork sisig plate behind it",
+    "alsoFor": ["crispy-pata-large", "pork-sisig"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.645, "r": 0.34 }
+  },
+  "fries": {
+    "file": "dishes/fries.jpg",
+    "alt": "French fries with ketchup on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.495, "r": 0.356 }
+  },
+  "garlic-buttered-shrimp": {
+    "file": "dishes/garlic-buttered-shrimp.jpg",
+    "alt": "Garlic buttered shrimp with parsley on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.499, "cy": 0.488, "r": 0.429 }
+  },
+  "grilled-pork-liempo": {
+    "file": "dishes/grilled-pork-liempo.jpg",
+    "alt": "Grilled pork belly with rice on a plate, with a seafood medley and rice plate below it",
+    "alsoFor": ["seafood-medley"],
+    "background": "table",
+    "plate": { "cx": 0.502, "cy": 0.321, "r": 0.29 }
+  },
+  "grilled-tuna-belly": {
+    "file": "dishes/grilled-tuna-belly.jpg",
+    "alt": "Grilled tuna belly steak with sesame, spring onion, calamansi and soy dip on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.493, "r": 0.405 }
+  },
+  "grilled-tuna-panga": {
+    "file": "dishes/grilled-tuna-panga.jpg",
+    "alt": "Grilled tuna panga with rice on a plate, with a crispy pork chop and rice plate below it",
+    "alsoFor": ["crispy-pork-chop"],
+    "background": "table",
+    "plate": { "cx": 0.583, "cy": 0.288, "r": 0.335 }
+  },
+  "halo-halo": {
+    "file": "dishes/halo-halo.jpg",
+    "alt": "Halo-halo in a tall glass topped with ube ice cream and leche flan, on a saucer with a spoon",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.616, "cy": 0.484, "r": 0.2 }
+  },
+  "hawaiian": {
+    "file": "dishes/hawaiian.jpg",
+    "alt": "Hawaiian pizza with ham and pineapple on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.498, "r": 0.47 }
+  },
+  "honey-lemon-chicken": {
+    "file": "dishes/honey-lemon-chicken.jpg",
+    "alt": "Honey lemon chicken with lemon slices and sesame on a plate, with a bowl of beef kulma below it",
+    "alsoFor": ["beef-kulma"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.325, "r": 0.285 }
+  },
+  "iced-tea": {
+    "file": "dishes/iced-tea.jpg",
+    "alt": "Glass of iced tea with a lemon slice, above a blue lemonade and a buko pandan shake",
+    "alsoFor": ["blue-lemonade", "buko-pandan"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.2, "r": 0.25 }
+  },
+  "kilawin": {
+    "file": "dishes/kilawin.jpg",
+    "alt": "Fresh fish kilawin with cucumber, red onion and chili in a white bowl on a wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.498, "r": 0.443 }
+  },
+  "medium-bilao": {
+    "file": "dishes/medium-bilao.jpg",
+    "alt": "Bilao tray with rice, battered chicken, chicken BBQ skewers, calamares, lumpia shanghai and boneless bangus on banana leaf",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.417, "cy": 0.5, "r": 0.21 }
+  },
+  "pancit-canton": {
+    "file": "dishes/pancit-canton.jpg",
+    "alt": "Stir-fried pancit canton with chicken strips and vegetables on a plate, above a tuna steak, a bowl of rice and a halo-halo",
+    "alsoFor": ["plain-scoop-rice"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.19, "r": 0.22 }
+  },
+  "pepperoni": {
+    "file": "dishes/pepperoni.jpg",
+    "alt": "Pepperoni pizza on a round wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.498, "r": 0.445 }
+  },
+  "salad-combo-c": {
+    "file": "dishes/salad-combo-c.jpg",
+    "alt": "Chicken katsu with fries and salad on a plate, with a plate of rice topped with diced fruit and tomato below it",
+    "alsoFor": ["binagoongan-fried-rice"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.317, "r": 0.32 }
+  },
+  "shrimp-in-coconut-sauce": {
+    "file": "dishes/shrimp-in-coconut-sauce.jpg",
+    "alt": "Shrimp in creamy coconut sauce with sliced green chili, in a white bowl on a wooden board",
+    "alsoFor": [],
+    "background": "board",
+    "plate": { "cx": 0.5, "cy": 0.5, "r": 0.445 }
+  },
+  "small-bilao": {
+    "file": "dishes/small-bilao.jpg",
+    "alt": "Bilao tray with rice, battered chicken, lumpia shanghai, boneless bangus, tortang talong and fried talong on banana leaf",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.605, "cy": 0.5, "r": 0.21 }
+  },
+  "sweet-and-sour-fish-fillet": {
+    "file": "dishes/sweet-and-sour-fish-fillet.jpg",
+    "alt": "Sweet and sour fish fillet with peppers on a plate, with a bowl of shrimp sinigang below it",
+    "alsoFor": ["sinigang-na-hipon"],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.342, "r": 0.31 }
+  },
+  "tapsilog": {
+    "file": "dishes/tapsilog.jpg",
+    "alt": "Garlic fried rice with beef tapa, a sunny-side-up egg and tomato slices on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.499, "r": 0.382 }
+  },
+  "tyulah-itum": {
+    "file": "dishes/tyulah-itum.jpg",
+    "alt": "Tausug black beef soup with lemongrass in a white bowl on a linen napkin",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.655, "cy": 0.5, "r": 0.21 }
+  }
+}
