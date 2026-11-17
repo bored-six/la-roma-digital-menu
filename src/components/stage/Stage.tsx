@@ -176,19 +176,6 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
         <div className={s.pool} aria-hidden="true" />
         <div className={s.floorRing} aria-hidden="true" />
 
-        <StageHeadline ref={headlineRef} item={shown} eyebrow={eyebrow} play={active} reduced={reduced} />
-
-        <div className="lr-stage__shadow" aria-hidden="true" />
-        <div ref={tiltRef} className={s.plateTilt}>
-          <div className={s.bob}>
-            <div ref={swapRef} className={s.swap}>
-              <Plate item={shown} photo={photo} icon={icon} eager={active} />
-            </div>
-          </div>
-        </div>
-
-        <OptionTiles ref={tilesRef} tiles={tiles} slots={slots} eager={active} stagger={!everSwapped.current} onPick={onPick} />
-
         {anatomy !== null && (
           <button
             type="button"
@@ -203,6 +190,19 @@ export function Stage({ items, selectedId, onSelect, active }: StageProps) {
             <span>Anatomia</span>
           </button>
         )}
+
+        <StageHeadline ref={headlineRef} item={shown} eyebrow={eyebrow} play={active} reduced={reduced} />
+
+        <div className="lr-stage__shadow" aria-hidden="true" />
+        <div ref={tiltRef} className={s.plateTilt}>
+          <div className={s.bob}>
+            <div ref={swapRef} className={s.swap}>
+              <Plate item={shown} photo={photo} icon={icon} eager={active} />
+            </div>
+          </div>
+        </div>
+
+        <OptionTiles ref={tilesRef} tiles={tiles} slots={slots} eager={active} stagger={!everSwapped.current} onPick={onPick} />
 
         <div className={s.grain} aria-hidden="true" />
         <p className={s.sr} aria-live="polite" aria-atomic="true">

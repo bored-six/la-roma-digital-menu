@@ -2,15 +2,18 @@
    Everything here is scoped under .stage so it always out-ranks the global lr-* rules, whatever the load order.
    Tokens come from design-system/tokens.css. No raw brand colours: only tokens and the stage ramp. */
 
+.wrap,
+.wrap * {
+  box-sizing: border-box; /* the design-system recipes are drawn border-box (preview.html resets it); make that true everywhere */
+}
+
 .wrap {
   /* the stage is its own container for cqi units (lr-stage-wrap does container-type) */
   position: relative;
 }
 
 .stage {
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
-  touch-action: pan-y;
+  /* no touch-action here on purpose: the pager swipes sideways with native scroll-snap, a swipe that starts on the stage must still work */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -214,7 +217,9 @@
 }
 
 .stage .card {
-  max-width: 54%;
+  /* border-box on purpose: the max-width must mean the same with or without a global reset. 60% leaves a gap before the price pill. */
+  box-sizing: border-box;
+  max-width: 60%;
 }
 /* two lines at most: the full text is in the list below, and a tall card would climb over the plate */
 .stage .card :global(.lr-glass__text) {
