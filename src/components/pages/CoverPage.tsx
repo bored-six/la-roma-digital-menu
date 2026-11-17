@@ -7,6 +7,9 @@ import { useSplitReveal } from '../../hooks/useSplitReveal';
 import { motion } from '../../lib/motion';
 import { Arrow, Emblem } from '../ornaments/Svg';
 
+/** public/ files hang off the Vite base, like the dish photos do (stageData.photoUrl). */
+const base = import.meta.env.BASE_URL;
+
 interface CoverPageProps {
   /** The cover is on screen. The rising intro plays only if the page opens on the cover; the title reveals the first time it is seen. */
   active: boolean;
@@ -133,8 +136,8 @@ export const CoverPage = memo(function CoverPage({ active }: CoverPageProps) {
         <div ref={archRef} className="cover__arch">
           <img
             ref={imgRef}
-            src="/brand/cover-arch-900.jpg"
-            srcSet="/brand/cover-arch-600.jpg 600w, /brand/cover-arch-900.jpg 900w"
+            src={`${base}brand/cover-arch-900.jpg`}
+            srcSet={`${base}brand/cover-arch-600.jpg 600w, ${base}brand/cover-arch-900.jpg 900w`}
             sizes="(min-width: 430px) 320px, 80vw"
             width={900}
             height={759}

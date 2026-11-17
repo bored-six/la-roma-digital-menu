@@ -8,7 +8,7 @@ import {
   useState,
   type RefObject,
 } from 'react';
-import { clampIndex, pageIndexFromHash } from '../lib/pager';
+import { clampIndex, indexFromScroll, pageIndexFromHash } from '../lib/pager';
 import type { Page, PageId } from '../types';
 
 export interface GoToOptions {
@@ -22,7 +22,10 @@ export interface GoToOptions {
 
 /** What a page component can ask of the pager. Provided by <Pager>. */
 export interface PagerApi {
+  /** The page the track has come to rest on. Drives the hash, focus, inert and which stages may load photos. */
   activeIndex: number;
+  /** The page under the viewport right now, also mid-scroll. Drives the indicator only. */
+  liveIndex: number;
   count: number;
   goTo(index: number, options?: GoToOptions): void;
   goToId(id: PageId, options?: GoToOptions): void;
@@ -42,6 +45,8 @@ export function usePagerContext(): PagerApi {
 }
 
 const ACTIVE_THRESHOLD = 0.6;
+/** No scroll event for this long = the track has settled (only used where `scrollend` does not exist). */
+const SETTLE_MS = 120;
 
 function isTypingTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;
@@ -50,15 +55,19 @@ function isTypingTarget(target: EventTarget | null): boolean {
 
 /**
  * Pager state for a CSS scroll-snap track. The track scrolls natively (compositor thread, native momentum);
- * this hook only observes it: IntersectionObserver (threshold .6) names the active page, one rAF-throttled
- * passive scroll listener writes --p (-1..1) on the pages near the viewport, the hash mirrors the active page.
+ * this hook only observes it: IntersectionObserver (threshold .6) names the LIVE page (indicator, follows the
+ * scroll), `scrollend` (or a 120 ms quiet period where it is missing) names the SETTLED page. Only the settled page
+ * is "active": a pip tap across ten pages must not wake the ten stages it flies past. One rAF-throttled passive
+ * scroll listener writes --p (-1..1) on the pages near the viewport, the hash mirrors the settled page.
  */
 export function usePager(pages: readonly Page[], reduced: boolean) {
   const count = pages.length;
   const trackRef = useRef<HTMLElement>(null);
   const veilRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(() => pageIndexFromHash(window.location.hash, pages));
-  const activeRef = useRef(activeIndex);
+  const [initialIndex] = useState(() => pageIndexFromHash(window.location.hash, pages));
+  const [liveIndex, setLiveIndex] = useState(initialIndex);
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const activeRef = useRef(initialIndex); // follows the live page: where a key press or a goTo starts from
   const pendingFocus = useRef<number | null>(null);
   const reducedRef = useRef(reduced);
   const lockedRef = useRef(false);
@@ -128,7 +137,7 @@ export function usePager(pages: readonly Page[], reduced: boolean) {
             next = Number(e.target.dataset.index);
           }
         }
-        if (next >= 0) setActiveIndex(next);
+        if (next >= 0) setLiveIndex(next);
       },
       { root: track, threshold: [ACTIVE_THRESHOLD] },
     );
@@ -136,10 +145,38 @@ export function usePager(pages: readonly Page[], reduced: boolean) {
     return () => io.disconnect();
   }, [count]);
 
-  // Hash mirrors the page (replaceState: no history spam), focus follows indicator/key navigation,
-  // and only the active page is reachable by Tab / screen readers (the others are inert).
   useEffect(() => {
-    activeRef.current = activeIndex;
+    activeRef.current = liveIndex;
+  }, [liveIndex]);
+
+  // Settled page: scrollend where the browser has it, otherwise 120 ms without a scroll event.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const settle = () => {
+      const i = indexFromScroll(track.scrollLeft, track.clientWidth, count);
+      setLiveIndex(i);
+      setActiveIndex(i);
+    };
+    if ('onscrollend' in window) {
+      track.addEventListener('scrollend', settle);
+      return () => track.removeEventListener('scrollend', settle);
+    }
+    let timer = 0;
+    const onScroll = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(settle, SETTLE_MS);
+    };
+    track.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.clearTimeout(timer);
+      track.removeEventListener('scroll', onScroll);
+    };
+  }, [count]);
+
+  // Hash mirrors the settled page (replaceState: no history spam), focus follows indicator/key navigation,
+  // and only the settled page is reachable by Tab / screen readers (the others are inert).
+  useEffect(() => {
     const page = pages[activeIndex];
     if (page) {
       const url = page.kind === 'cover' ? window.location.pathname + window.location.search : `#${page.id}`;
@@ -244,5 +281,5 @@ export function usePager(pages: readonly Page[], reduced: boolean) {
     return () => window.removeEventListener('hashchange', onHash);
   }, [pages, goTo]);
 
-  return { trackRef, veilRef, activeIndex, count, goTo, goToId, getPage, setLocked };
+  return { trackRef, veilRef, activeIndex, liveIndex, count, goTo, goToId, getPage, setLocked };
 }

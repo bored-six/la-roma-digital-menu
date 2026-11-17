@@ -10,7 +10,7 @@ function renderPage(page: Page, state: PageState) {
     case 'cover':
       return <CoverPage active={state.active} />;
     case 'category':
-      return <CategoryPage page={page} active={state.active} />;
+      return <CategoryPage page={page} active={state.active} near={state.near} />;
     case 'closing':
       return <ClosingPage />;
   }

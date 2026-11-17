@@ -13,15 +13,17 @@ const PHOTOS = photosJson as Record<string, PhotoEntry>;
 
 interface CategoryPageProps {
   page: Extract<Page, { kind: 'category' }>;
-  /** This page is the one on screen. */
+  /** The settled current page. */
   active: boolean;
+  /** Settled page +-1: the stage may fetch photos. */
+  near: boolean;
 }
 
 /**
  * One menu page: the stage on top (one dish selected), then every category of the page as a PDF-style list.
  * `selectedId` lives here: the list rows and (later) the stage tiles both write it.
  */
-export const CategoryPage = memo(function CategoryPage({ page, active }: CategoryPageProps) {
+export const CategoryPage = memo(function CategoryPage({ page, active, near }: CategoryPageProps) {
   const reduced = useReducedMotion();
   const items = useMemo(() => page.categories.flatMap((c) => c.items), [page]);
   const [selectedId, setSelectedId] = useState(() => defaultSelectedId(items, PHOTOS) ?? items[0]?.id ?? '');
@@ -43,7 +45,7 @@ export const CategoryPage = memo(function CategoryPage({ page, active }: Categor
         {page.label}
       </h2>
       <div ref={stageRef} className="page__stage">
-        <Stage items={items} selectedId={selectedId} onSelect={onSelect} active={active} />
+        <Stage items={items} selectedId={selectedId} onSelect={onSelect} active={active} near={near} />
       </div>
       {page.categories.map((category) => {
         const titleId = `${page.id}-${category.id}-title`;

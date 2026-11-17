@@ -8,9 +8,9 @@ import { Indicator } from './Indicator';
 
 export interface PageState {
   index: number;
-  /** This page is the one on screen. */
+  /** The settled current page (not a page the track is merely flying past). */
   active: boolean;
-  /** Active page or either neighbour: the ones worth loading images for. */
+  /** Settled page or either neighbour: the only ones allowed to fetch photos. */
   near: boolean;
 }
 
@@ -44,11 +44,11 @@ function PageSlot({ page, index, count, children }: PageSlotProps) {
 
 export function Pager({ pages, renderPage }: PagerProps) {
   const reduced = useReducedMotion();
-  const { trackRef, veilRef, activeIndex, count, goTo, goToId, getPage, setLocked } = usePager(pages, reduced);
+  const { trackRef, veilRef, activeIndex, liveIndex, count, goTo, goToId, getPage, setLocked } = usePager(pages, reduced);
 
   const api = useMemo<PagerApi>(
-    () => ({ activeIndex, count, goTo, goToId, getPage, veilRef, setLocked }),
-    [activeIndex, count, goTo, goToId, getPage, veilRef, setLocked],
+    () => ({ activeIndex, liveIndex, count, goTo, goToId, getPage, veilRef, setLocked }),
+    [activeIndex, liveIndex, count, goTo, goToId, getPage, veilRef, setLocked],
   );
 
   return (
@@ -69,14 +69,14 @@ export function Pager({ pages, renderPage }: PagerProps) {
             ))}
           </main>
           <div ref={veilRef} className="pager__veil" aria-hidden="true" />
-          <Indicator pages={pages} activeIndex={activeIndex} onGo={(i) => goTo(i, { focus: true })} />
+          <Indicator pages={pages} activeIndex={liveIndex} onGo={(i) => goTo(i, { focus: true })} />
         </div>
         <button
           type="button"
           className="shell__arrow shell__arrow--prev"
           aria-label="Previous page"
-          aria-disabled={activeIndex === 0}
-          onClick={() => goTo(activeIndex - 1, { focus: true })}
+          aria-disabled={liveIndex === 0}
+          onClick={() => goTo(liveIndex - 1, { focus: true })}
         >
           <Arrow dir="left" />
         </button>
@@ -84,8 +84,8 @@ export function Pager({ pages, renderPage }: PagerProps) {
           type="button"
           className="shell__arrow shell__arrow--next"
           aria-label="Next page"
-          aria-disabled={activeIndex === count - 1}
-          onClick={() => goTo(activeIndex + 1, { focus: true })}
+          aria-disabled={liveIndex === count - 1}
+          onClick={() => goTo(liveIndex + 1, { focus: true })}
         >
           <Arrow dir="right" />
         </button>

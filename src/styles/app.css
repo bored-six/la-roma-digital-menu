@@ -197,8 +197,11 @@ button {
   list-style: none;
 }
 .indicator__pips li {
-  flex: 0 1 24px;
-  min-width: 17px;
+  /* 24px hit area per pip (WCAG 2.2 target size). Only when 14 x 24 cannot fit does a slot get narrower, and then
+     the slots touch: no gap is ever left between two taps. The drawn pip stays 8 x 12 (22 wide when active). */
+  flex: 1 1 24px;
+  min-width: 0;
+  max-width: 24px;
 }
 .indicator__pip {
   display: flex;
@@ -252,6 +255,15 @@ button {
 @keyframes label-in {
   from {
     opacity: 0;
+  }
+}
+
+/* 14 x 24px needs 336px between the bar's padding: below 390px tighten the bar so it still fits down to 359px */
+@media (max-width: 389px) {
+  .indicator {
+    left: 6px;
+    right: 6px;
+    padding-inline: 4px;
   }
 }
 
@@ -677,6 +689,7 @@ button {
 
 .cover__arch-wrap {
   container-type: inline-size;
+  width: min(88%, 330px, calc((100vh - 470px) * 1.12));
   width: min(88%, 330px, calc((100dvh - 470px) * 1.12));
   min-width: 190px;
   margin: 22px 0 18px;
