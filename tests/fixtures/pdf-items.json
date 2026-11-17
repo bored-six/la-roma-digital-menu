@@ -1,0 +1,285 @@
+{
+  "_about": "Independent transcription of reference/menu-pages/page-02.png .. page-14.png, made by viewing the renders, not by copying the spec table beyond the app page grouping. Names are Title Case even where the PDF styles them in capitals or small caps. price is whole pesos or null (blank in the PDF). description is the italic line, line wraps joined. badges default to [] when omitted. panelPhrases are the side-panel taglines printed on the source pages (compare case-insensitively). category id = slug of the printed title, except both Drinks categories use their page id.",
+  "pages": [
+    {
+      "id": "breakfast",
+      "pdfPages": [2],
+      "panelPhrases": [],
+      "categories": [
+        {
+          "id": "all-day-breakfast",
+          "items": [
+            { "name": "Chicksilog", "price": 150, "description": "Garlic fried rice, crispy fried chicken and a sunny-side-up egg" },
+            { "name": "Bangsilog", "price": 150, "description": "Garlic fried rice, crispy fried bangus (milkfish) and a sunny-side-up egg" },
+            { "name": "Tapsilog", "price": 150, "description": "Garlic fried rice, tender beef tapa and a sunny-side-up egg" }
+          ]
+        },
+        {
+          "id": "noodles",
+          "items": [
+            { "name": "Sotanghon", "price": 220, "description": "Glass noodles" },
+            { "name": "Pancit Canton", "price": 220 },
+            { "name": "Bihon", "price": 220, "description": "Thin rice noodles" },
+            { "name": "Bam-E", "price": 220, "description": "Egg noodles and glass noodles together" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unli-rice",
+      "pdfPages": [3, 4],
+      "panelPhrases": ["Rice without limits", "One scoop is never enough"],
+      "categories": [
+        {
+          "id": "unli-rice",
+          "items": [
+            { "name": "Chicken BBQ", "price": 99, "badges": ["Unli rice"] },
+            { "name": "Pork BBQ (3 sticks)", "price": 99, "badges": ["Unli rice"] },
+            { "name": "Tuna Sisig", "price": 99, "badges": ["Unli rice"] },
+            { "name": "Tinolang Isda", "price": 99, "description": "Fish in a clear ginger broth", "badges": ["Unli rice"] },
+            { "name": "Seafood Medley", "price": 148, "badges": ["Unli rice"] },
+            { "name": "Fried Tuna Buntot", "price": 148, "description": "Fried tuna tail", "badges": ["Unli rice"] },
+            { "name": "Grilled Pork Liempo", "price": 148, "description": "Grilled pork belly", "badges": ["Unli rice"] },
+            { "name": "Crispy Pork Liempo", "price": 148, "description": "Crispy pork belly", "badges": ["Unli rice"] },
+            { "name": "Grilled Pork Chop", "price": 148, "badges": ["Unli rice"] },
+            { "name": "Crispy Pork Chop", "price": 148, "badges": ["Unli rice"] },
+            { "name": "Pork Hungarian", "price": 148, "description": "Hungarian-style pork sausage", "badges": ["Unli rice"] },
+            { "name": "Battered Chicken", "price": 148, "badges": ["Unli rice"] },
+            { "name": "Buffalo Chicken", "price": 148, "badges": ["Unli rice"] },
+            { "name": "Grilled Tuna Panga", "price": 198, "description": "Grilled tuna jaw", "badges": ["Unli rice"] },
+            { "name": "Grilled Tuna Belly", "price": 198, "badges": ["Unli rice"] },
+            { "name": "Grilled Pompano", "price": 220, "badges": ["Unli rice"] },
+            { "name": "Fried Pompano", "price": 220, "badges": ["Unli rice"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizza",
+      "pdfPages": [5],
+      "panelPhrases": [],
+      "categories": [
+        {
+          "id": "pizza",
+          "items": [
+            { "name": "Hawaiian", "price": 299, "description": "Family size, 12 inch" },
+            { "name": "Pepperoni", "price": 299, "description": "Family size, 12 inch" },
+            { "name": "All Meat Overload", "price": 310, "description": "Family size, 12 inch" }
+          ]
+        },
+        {
+          "id": "starters",
+          "items": [
+            { "name": "Fries", "price": 100 },
+            { "name": "Cheese Stick", "price": 120 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "favourites",
+      "pdfPages": [6],
+      "panelPhrases": ["Made for sharing"],
+      "categories": [
+        {
+          "id": "house-favourites",
+          "items": [
+            { "name": "Small Bilao", "price": 550, "description": "Rice, battered chicken, lumpia shanghai, boneless bangus, tortang talong, fried talong", "badges": ["For sharing"] },
+            { "name": "Medium Bilao", "price": 950, "description": "Rice, battered chicken, chicken BBQ, calamares, lumpia shanghai, boneless bangus", "badges": ["For sharing"] },
+            { "name": "Tyulah Itum", "price": 300, "description": "Tausug black beef soup with burnt coconut", "badges": ["Soup"] },
+            { "name": "Bulalo", "price": 300, "description": "Beef shank and bone-marrow soup", "badges": ["Soup"] },
+            { "name": "Halo-Halo", "price": 100, "description": "Shaved ice with sweet toppings and milk", "badges": ["Dessert"] }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rice-meals",
+      "pdfPages": [7],
+      "panelPhrases": ["Simple and hearty"],
+      "categories": [
+        {
+          "id": "rice-meals",
+          "items": [
+            { "name": "Chicken BBQ", "price": 99 },
+            { "name": "Buffalo Chicken", "price": 148 },
+            { "name": "Battered Chicken", "price": 148 },
+            { "name": "Hungarian Sausage", "price": 148 },
+            { "name": "Crispy Pork Liempo", "price": 148, "description": "Crispy pork belly" },
+            { "name": "Grilled Pork Chop", "price": 148 },
+            { "name": "Crispy Pork Chop", "price": 148 }
+          ]
+        },
+        {
+          "id": "vegetables",
+          "items": [
+            { "name": "Chopsuey", "price": 240, "description": "Stir-fried mixed vegetables" },
+            { "name": "Pinakbet", "price": 240, "description": "Mixed vegetables with shrimp paste" },
+            { "name": "Seafood Veggies", "price": 240 },
+            { "name": "Stir Fry Veggies", "price": 240 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chicken-beef",
+      "pdfPages": [8],
+      "panelPhrases": ["Fresh from the kitchen"],
+      "categories": [
+        {
+          "id": "chicken",
+          "items": [
+            { "name": "Battered Chicken", "price": 240 },
+            { "name": "Honey Lemon Chicken", "price": 260 },
+            { "name": "Buffalo Chicken", "price": 260 },
+            { "name": "Chicken Sisig", "price": 260 },
+            { "name": "Chicken Skin", "price": 220, "description": "Crispy chicken skin" }
+          ]
+        },
+        {
+          "id": "beef",
+          "items": [
+            { "name": "Tenderloin Steak", "price": 450 },
+            { "name": "Beef Steak", "price": 280 },
+            { "name": "Beef Kulma", "price": 280, "description": "Tausug-style spiced beef stew" },
+            { "name": "Beef Sisig", "price": 260 },
+            { "name": "Lumpia Shanghai", "price": 250, "description": "Crispy spring rolls" },
+            { "name": "Beef Liver Sisig", "price": 240 },
+            { "name": "Beef Liver Steak", "price": 240 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pork",
+      "pdfPages": [9],
+      "panelPhrases": ["Crispy and sizzling"],
+      "categories": [
+        {
+          "id": "pork",
+          "items": [
+            { "name": "Lechon Kawali", "price": 280, "description": "Crispy fried pork belly" },
+            { "name": "Humba", "price": 280, "description": "Sweet braised pork" },
+            { "name": "Pork Dinuguan", "price": 250, "description": "Pork stew in a savoury pork-blood sauce" },
+            { "name": "Pata with Pork and Beans", "price": 250 },
+            { "name": "Pork Sisig", "price": 240 },
+            { "name": "Chicharon Bulaklak", "price": 220, "description": "Crispy fried pork mesentery" },
+            { "name": "Crispy Pata, Regular", "price": null, "description": "Deep-fried pork knuckle" },
+            { "name": "Crispy Pata, Large", "price": null }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sea",
+      "pdfPages": [10, 11],
+      "panelPhrases": ["More from the sea"],
+      "categories": [
+        {
+          "id": "from-the-sea",
+          "items": [
+            { "name": "Grilled Tuna Belly", "price": 340 },
+            { "name": "Garlic Buttered Shrimp", "price": 300 },
+            { "name": "Shrimp in Coconut Sauce", "price": 300 },
+            { "name": "Kilawin", "price": 250, "description": "Fresh fish cured in vinegar" },
+            { "name": "Calamares", "price": 230, "description": "Fried squid rings" },
+            { "name": "Fish Fillet, Black Bean Sauce", "price": 250 },
+            { "name": "Sweet and Sour Fish Fillet", "price": 250 },
+            { "name": "Fish Fillet, Tartar Sauce", "price": 250 },
+            { "name": "Tuna Sisig", "price": 250 },
+            { "name": "Crispy Shrimps", "price": 230 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "soup",
+      "pdfPages": [11],
+      "panelPhrases": [],
+      "categories": [
+        {
+          "id": "soup",
+          "items": [
+            { "name": "Sinigang na Baboy", "price": 250, "description": "Sour soup with pork" },
+            { "name": "Tinolang Isda", "price": 240, "description": "Fish in a clear ginger broth" },
+            { "name": "Sinigang na Hipon", "price": 220, "description": "Sour soup with shrimp" },
+            { "name": "Corn Soup", "price": 220 },
+            { "name": "Clam Soup", "price": 220 },
+            { "name": "Lomi", "price": 210, "description": "Thick egg-noodle soup" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salad-rice",
+      "pdfPages": [12],
+      "panelPhrases": ["Fresh and simple"],
+      "categories": [
+        {
+          "id": "salad",
+          "items": [
+            { "name": "Salad Solo", "price": 120, "description": "Lettuce, carrots, cucumber, tomato, onion, salad dressing" },
+            { "name": "Salad Combo A", "price": 220, "description": "French fries, chicken BBQ, salad" },
+            { "name": "Salad Combo B", "price": 220, "description": "French fries, buttered chicken, salad" },
+            { "name": "Salad Combo C", "price": 220, "description": "French fries, chicken katsu, salad" },
+            { "name": "Salad Combo D", "price": 220, "description": "French fries, fish fillet, salad" }
+          ]
+        },
+        {
+          "id": "rice",
+          "items": [
+            { "name": "Plain Scoop Rice", "price": 30 },
+            { "name": "Plain Platter Rice", "price": 130 },
+            { "name": "Java Rice", "price": 180, "description": "Seasoned yellow fried rice" },
+            { "name": "Garlic Rice", "price": 180 },
+            { "name": "Binagoongan Fried Rice", "price": 190, "description": "Fried rice with shrimp paste" },
+            { "name": "Shanghai Fried Rice", "price": 200 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cold-drinks",
+      "pdfPages": [13],
+      "panelPhrases": ["Ice cold and fresh"],
+      "categories": [
+        {
+          "id": "cold-drinks",
+          "items": [
+            { "name": "Bottled Water", "price": 30, "subgroup": "Water and Soda" },
+            { "name": "Coke, Sprite, Royal, Mountain Dew", "price": 40, "subgroup": "Water and Soda" },
+            { "name": "Coke 1.5 L", "price": 140, "subgroup": "Water and Soda" },
+            { "name": "Four Season Juice", "price": 75, "description": "Mixed fruit juice", "subgroup": "Juice" },
+            { "name": "Pineapple Juice", "price": 75, "subgroup": "Juice" },
+            { "name": "Iced Tea", "price": 69, "subgroup": "Cold Drinks", "variants": [{ "label": "Glass", "price": 69 }, { "label": "Pitcher", "price": 130 }] },
+            { "name": "Blue Lemonade", "price": 69, "subgroup": "Cold Drinks", "variants": [{ "label": "Glass", "price": 69 }, { "label": "Pitcher", "price": 130 }] },
+            { "name": "Cucumber Lemonade", "price": 69, "subgroup": "Cold Drinks", "variants": [{ "label": "Glass", "price": 69 }, { "label": "Pitcher", "price": 130 }] },
+            { "name": "Strawberry", "price": 80, "subgroup": "Shakes" },
+            { "name": "Buko Pandan", "price": 80, "description": "Young coconut and pandan", "subgroup": "Shakes" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hot-drinks",
+      "pdfPages": [14],
+      "panelPhrases": ["Salute! To good company"],
+      "categories": [
+        {
+          "id": "hot-drinks",
+          "items": [
+            { "name": "Barako Brewed Coffee", "price": 60, "description": "Strong local brewed coffee", "subgroup": "Hot" },
+            { "name": "Green Tea", "price": 60, "subgroup": "Hot" },
+            { "name": "Lemon Tea", "price": 60, "subgroup": "Hot" },
+            { "name": "Hot Choco", "price": 60, "subgroup": "Hot" },
+            { "name": "San Mig Apple", "price": 75, "subgroup": "Beer" },
+            { "name": "San Mig Light", "price": 75, "subgroup": "Beer" },
+            { "name": "Pale Pilsen", "price": 75, "subgroup": "Beer" },
+            { "name": "Red Horse", "price": 75, "subgroup": "Beer" },
+            { "name": "Cali", "price": 75, "subgroup": "Beer" }
+          ]
+        }
+      ]
+    }
+  ]
+}

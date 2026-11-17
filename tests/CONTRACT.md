@@ -1,0 +1,15 @@
+# Contract decisions (where spec.md left it open). Tests in tests/ and src/lib/*.test.ts pin these.
+- slug(name): lowercase, strip accents (NFD), every run of non [a-z0-9] -> one "-", trim "-". `Coke 1.5 L` -> `coke-1-5-l`.
+- Category id = slug of printed title, except both Drinks use their page id (cold-drinks, hot-drinks); sea page's category is `from-the-sea`. Item id = `${categoryId}/${slug(name)}`.
+- Names are Title Case even where the PDF prints capitals (Hawaiian, All Meat Overload). Punctuation kept verbatim. `icon` is a bare stem (`pork`), no path or .svg.
+- badges: `Unli rice` only in unli-rice; House Favourites per PDF; every other item `[]`. `variants` absent (not `[]`) unless Glass/Pitcher. Only pizza, unli-rice, soup carry notes; taglines only from the PDF side panels (fixture `panelPhrases`).
+- formatPrice(n: number | null): null/NaN/Infinity -> ''; 0 -> '₱0'; -150 -> '-₱150'; always en-US commas + ASCII digits (never device locale), no spaces.
+- clampIndex(index, count): integer in [0, count-1]; NaN, count <= 0 or NaN -> 0; +-Infinity clamps.
+- indexFromScroll(scrollLeft, width, count): Math.round(scrollLeft / width) then clampIndex; exact half rounds up; width <= 0 or NaN -> 0.
+- pageIndexFromHash(hash, pages): strip one leading '#', trailing '/', decodeURIComponent (malformed -> 0, never throw), lowercase, exact id match -> index, else 0. Never inherit Object.prototype names (use Map/find).
+- resolvePhoto(item, photos: Record<string, PhotoEntry>): `item.photoSlug` if it is an own key, else own slug(item.name), else first entry in key order whose alsoFor has it, else null. Result `{ slug: <photos KEY>, entry: <same object> }`. Own-property lookups only (name `Constructor` -> null).
+- pickTiles(items, selectedId, photos, max = 6) returns `Array<{ item: Item; photo: { slug, entry } | null }>` (photo = resolvePhoto). Others with photo first, then photo-less, each group in list order. Drop every item whose id equals selectedId, dedupe by id (first wins), cut to max; max <= 0 -> [] (no negative slice). Must not mutate `items`.
+- motion(reduced) returns `{ reduced, dur:{xs,s,m,l}, fade:{xs,s,m,l}, ease:{out,io,stamp}, parallax, tilt, splitText }`, seconds. Normal: dur = fade = {.15,.3,.55,.9}, ease = expo.out / power3.inOut / back.out(2.2), flags true. Reduced: dur all 0, fade = min(token, .2), flags false. Return a fresh object each call.
+- regionClipPath(r): `ellipse(${rx}% ${ry}% at ${cx}% ${cy}%)`, each = fraction*100 rounded to <= 2 decimals, trailing zeros trimmed, no exponent. NaN/Infinity -> throw.
+- Anatomy: every ANATOMY entry needs >= 2 regions (spec: Anatomia shows iff length >= 2) and `chicksilog` must exist.
+- Source of truth for names/prices/order: tests/fixtures/pdf-items.json (independent PDF transcription). If it is wrong, fix the fixture and say so.
