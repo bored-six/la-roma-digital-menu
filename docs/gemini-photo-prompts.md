@@ -1,6 +1,6 @@
 # Gemini prompts for the missing dish photos
 
-12 dishes still have no photo (the menu has 111 items, 80 are covered). 8 bottled drinks are left out on purpose, see the end.
+2 dishes still have no photo (the menu has 111 items, 90 are covered). 8 bottled drinks are left out on purpose, see the end.
 Where a dish has no photo the app shows the placeholder plate, so nothing breaks if you skip some.
 
 ## How to use it
@@ -36,23 +36,6 @@ Props: nothing, except optionally a folded cream linen napkin in one corner. No 
 Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
 ```
 
-## Salad
-
-### `salad-combo-d`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: One plate with French fries, a golden breaded fish fillet and a fresh salad (lettuce, tomato, cucumber).
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
 ## Rice
 
 ### `plain-platter-rice`
@@ -67,143 +50,6 @@ Surface: pale natural maple wood tabletop with fine matte grain, filling the who
 Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
 Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
 Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `java-rice`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Java rice, seasoned yellow fried rice with fine carrot and green pea bits, mounded on the plate.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `garlic-rice`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Garlic fried rice topped with golden toasted garlic bits, mounded on the plate.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `shanghai-fried-rice`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Shanghai fried rice with small pork pieces, shrimp, egg, carrot and green peas.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-## Drinks
-
-### `four-season-juice`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same saucer, same table, same light, same colour grade. Do not restyle anything.
-
-Drink: Tall glass of mixed-fruit juice, warm orange-yellow, with ice and an orange slice on the rim.
-
-Camera: about 35 degrees above the table (not overhead), the drink centred.
-Vessel: a tall clear glass (or a cream ceramic cup for hot drinks) standing centred on a round cream saucer with a thin terracotta-red line along the rim. The saucer fills about 60 percent of the image width.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Drink: freshly poured, natural colours, light condensation on cold glasses, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `pineapple-juice`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same saucer, same table, same light, same colour grade. Do not restyle anything.
-
-Drink: Tall glass of pale golden pineapple juice with ice and a small pineapple wedge on the rim.
-
-Camera: about 35 degrees above the table (not overhead), the drink centred.
-Vessel: a tall clear glass (or a cream ceramic cup for hot drinks) standing centred on a round cream saucer with a thin terracotta-red line along the rim. The saucer fills about 60 percent of the image width.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Drink: freshly poured, natural colours, light condensation on cold glasses, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `cucumber-lemonade`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same saucer, same table, same light, same colour grade. Do not restyle anything.
-
-Drink: Tall glass of pale green cucumber lemonade with ice, cucumber slices and a lemon wheel.
-
-Camera: about 35 degrees above the table (not overhead), the drink centred.
-Vessel: a tall clear glass (or a cream ceramic cup for hot drinks) standing centred on a round cream saucer with a thin terracotta-red line along the rim. The saucer fills about 60 percent of the image width.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Drink: freshly poured, natural colours, light condensation on cold glasses, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `strawberry`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same saucer, same table, same light, same colour grade. Do not restyle anything.
-
-Drink: Tall glass of a thick pink strawberry shake, a whole strawberry on the rim, no straw.
-
-Camera: about 35 degrees above the table (not overhead), the drink centred.
-Vessel: a tall clear glass (or a cream ceramic cup for hot drinks) standing centred on a round cream saucer with a thin terracotta-red line along the rim. The saucer fills about 60 percent of the image width.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Drink: freshly poured, natural colours, light condensation on cold glasses, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `green-tea`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same saucer, same table, same light, same colour grade. Do not restyle anything.
-
-Drink: Hot green tea in a cream ceramic cup on a saucer, clear pale green-gold colour.
-
-Camera: about 35 degrees above the table (not overhead), the drink centred.
-Vessel: a tall clear glass (or a cream ceramic cup for hot drinks) standing centred on a round cream saucer with a thin terracotta-red line along the rim. The saucer fills about 60 percent of the image width.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Drink: freshly poured, natural colours, light condensation on cold glasses, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `lemon-tea`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same saucer, same table, same light, same colour grade. Do not restyle anything.
-
-Drink: Hot lemon tea in a cream ceramic cup on a saucer, amber colour, a lemon slice floating in it.
-
-Camera: about 35 degrees above the table (not overhead), the drink centred.
-Vessel: a tall clear glass (or a cream ceramic cup for hot drinks) standing centred on a round cream saucer with a thin terracotta-red line along the rim. The saucer fills about 60 percent of the image width.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Drink: freshly poured, natural colours, light condensation on cold glasses, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner.
 Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
 ```
 

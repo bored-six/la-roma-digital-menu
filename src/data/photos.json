@@ -167,6 +167,13 @@
     "background": "table",
     "plate": { "cx": 0.499, "cy": 0.499, "r": 0.347 }
   },
+  "cucumber-lemonade": {
+    "file": "dishes/cucumber-lemonade.jpg",
+    "alt": "Tall glass of pale green cucumber lemonade with ice, cucumber slices and a lemon wheel on the rim, on a saucer",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.493, "r": 0.365 }
+  },
   "fish-fillet-black-bean-sauce": {
     "file": "dishes/fish-fillet-black-bean-sauce.jpg",
     "alt": "Crispy fish fillet strips in a glossy black bean sauce with spring onion, ginger and red chili on a plate",
@@ -180,6 +187,13 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.497, "r": 0.345 }
+  },
+  "four-season-juice": {
+    "file": "dishes/four-season-juice.jpg",
+    "alt": "Tall glass of mixed-fruit juice with ice and an orange slice, on a saucer",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.495, "r": 0.315 }
   },
   "fried-pompano": {
     "file": "dishes/fried-pompano.jpg",
@@ -208,6 +222,20 @@
     "alsoFor": [],
     "background": "board",
     "plate": { "cx": 0.499, "cy": 0.488, "r": 0.429 }
+  },
+  "garlic-rice": {
+    "file": "dishes/garlic-rice.jpg",
+    "alt": "Mound of garlic fried rice topped with toasted golden garlic bits on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.505, "r": 0.384 }
+  },
+  "green-tea": {
+    "file": "dishes/green-tea.jpg",
+    "alt": "Cup of pale green-gold hot green tea on a saucer",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.58, "r": 0.32 }
   },
   "grilled-pompano": {
     "file": "dishes/grilled-pompano.jpg",
@@ -286,6 +314,13 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.2, "r": 0.25 }
   },
+  "java-rice": {
+    "file": "dishes/java-rice.jpg",
+    "alt": "Mound of yellow Java rice with fine carrot and green pea bits on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.5, "r": 0.265 }
+  },
   "kilawin": {
     "file": "dishes/kilawin.jpg",
     "alt": "Fresh fish kilawin with cucumber, red onion and chili in a white bowl on a wooden board",
@@ -299,6 +334,13 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.499, "cy": 0.497, "r": 0.366 }
+  },
+  "lemon-tea": {
+    "file": "dishes/lemon-tea.jpg",
+    "alt": "Cup of amber hot lemon tea with a lemon slice, on a saucer",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.58, "r": 0.32 }
   },
   "lomi": {
     "file": "dishes/lomi.jpg",
@@ -342,6 +384,13 @@
     "background": "board",
     "plate": { "cx": 0.5, "cy": 0.498, "r": 0.445 }
   },
+  "pineapple-juice": {
+    "file": "dishes/pineapple-juice.jpg",
+    "alt": "Tall glass of pale golden pineapple juice with ice and a pineapple wedge on the rim, on a saucer",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.505, "r": 0.365 }
+  },
   "pork-bbq-3-sticks": {
     "file": "dishes/pork-bbq-3-sticks.jpg",
     "alt": "Three glazed pork BBQ skewers on a plate with a mound of rice and a small cup of spiced vinegar",
@@ -384,6 +433,13 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.317, "r": 0.32 }
   },
+  "salad-combo-d": {
+    "file": "dishes/salad-combo-d.jpg",
+    "alt": "Plate of French fries, a golden breaded fish fillet and a fresh salad of lettuce, cucumber and tomato",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.498, "r": 0.266 }
+  },
   "salad-solo": {
     "file": "dishes/salad-solo.jpg",
     "alt": "Fresh salad of lettuce, carrot, cucumber, tomato and red onion in a bowl, with a small cup of dressing beside it",
@@ -397,6 +453,13 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.497, "cy": 0.497, "r": 0.383 }
+  },
+  "shanghai-fried-rice": {
+    "file": "dishes/shanghai-fried-rice.jpg",
+    "alt": "Mound of Shanghai fried rice with pork, shrimp, egg, carrot and green peas on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.504, "r": 0.383 }
   },
   "shrimp-in-coconut-sauce": {
     "file": "dishes/shrimp-in-coconut-sauce.jpg",
@@ -432,6 +495,13 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.499, "cy": 0.499, "r": 0.383 }
+  },
+  "strawberry": {
+    "file": "dishes/strawberry.jpg",
+    "alt": "Tall glass of pink strawberry shake with a strawberry on the rim, on a saucer",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.493, "r": 0.365 }
   },
   "sweet-and-sour-fish-fillet": {
     "file": "dishes/sweet-and-sour-fish-fillet.jpg",
