@@ -56,3 +56,8 @@ What works: `osascript -l JavaScript script.js <pdf> <outdir>` using PDFKit thro
 - `whenSettled` takes an env seam (`SettleEnv`) like `createAnatomiaLoader(importer)`, so it is tested without a DOM. `browserSettleEnv()` is the real one.
 - Only fonts used on the cover are preloaded in `index.html` (Cinzel, Familjen italic for the tagline). Bricolage and Reddit Mono are not on the cover; preloading them would compete with the arch image and JS on a slow link.
 - Dev note: the Vite dev server serves unbundled modules, so load timing there is not representative. Measure with `npm run build` then `npm run preview` (launch.json: `la-roma-preview`, port 5198).
+
+## 2026-11-19 - Blank page right after a deploy (stale HTML, deleted bundle)
+- GitHub Pages serves `index.html` with `cache-control: max-age=600` (10 min) and each deploy REPLACES the whole site, so the old hashed bundle (`assets/index-<hash>.js`) 404s straight away. A browser that cached the old HTML in the last 10 minutes asks for the old bundle, gets a 404 and shows the empty cream background, no error on the page. Reproduced in the in-app browser right after the 74eea16 push: console 404 for `index-sbmMImHr.js`, blank page; a fresh URL (`?fresh=1`) loaded fine.
+- Fix for the viewer: hard refresh (Cmd+Shift+R, on a phone close the tab and reopen) or wait up to 10 min. Nothing to fix in code: Pages does not let us set headers or keep old assets. Do not "fix" it with a service worker; not worth it for a showcase site.
+- Consequence for pushes: every push to main opens a ~10 min window where returning visitors can see a blank page. Push in one batch, and tell the user before pushing if they are about to show the site to someone.
