@@ -22,16 +22,19 @@ Files: `tokens.css` (all values), `stage.css` (stage and ornament recipes), `svg
 - Pips: idle is a round arch (8x12). Active widens to a flattened Roman arch (22x12, filled red). Wrap each pip in a button with a hit area of at least 24x24.
 
 ## Type
+Two Italian families, nothing else.
+
 | Role | Family (fontsource) | Setting |
 |---|---|---|
-| Section titles, stage dish name, eyebrows | `@fontsource-variable/cinzel` | 700 at 30px, +0.02em, mixed case (lowercase renders as small caps, like the print). Stage name 600 at 34px. Eyebrow 600 at 11px, +0.32em |
-| Item names | `@fontsource-variable/bricolage-grotesque` (import `/opsz.css` for the optical-size axis) | 700 at 18px, `font-variation-settings: "opsz" 18` |
-| Descriptions | `@fontsource-variable/familjen-grotesk` (italic: `/wght-italic.css`) | italic 400 at 14/20 |
-| Prices, labels, counters | `@fontsource-variable/reddit-mono` | 800 at 17px, tabular, slashed zero by default |
+| Cover wordmark, section titles, stage dish name, eyebrows, buttons, labels | `@fontsource-variable/bodoni-moda` (import `/opsz.css`: wght 400-900 + opsz 6-96) | Title 700 at 32px, -0.005em, mixed case. Stage name 600 at 34px, shrunk to fit one line (`fitTitle`). Eyebrow 600 at 11px, +0.28em, caps |
+| Item names | Bodoni Moda | 700 at 19px, optical size follows the font size (`font-optical-sizing: auto`, never set `opsz` by hand) |
+| Prices, counters | Bodoni Moda | 700 at 18px, `lining-nums tabular-nums`. The peso sign comes from "La Roma Peso" |
+| Descriptions, taglines, hints | `@fontsource-variable/eb-garamond` (import `/wght-italic.css`) | italic 400 at 16/21. Always italic: the upright face is not loaded |
 
-Why: Cinzel continues the cut-capital titles of the printed menu. Bricolage gives the names a warm, slightly ink-trapped bite that Helvetica-likes lack. Reddit Mono has the print's slashed zero *and* a proper double-bar peso sign.
-**Peso sign U+20B1 checked in the font files:** Reddit Mono, Bricolage Grotesque and Familjen Grotesk render it. Cinzel has **no** peso sign, so a price never goes in Cinzel. The glyph is in the **latin-ext** subset: import the full fontsource CSS (its unicode-range loads latin-ext only on pages that use it), never only `latin`.
-Rejected after checking: Space Mono, Overpass Mono, IBM Plex Mono (dotted zero), JetBrains Mono, Martian Mono, Red Hat Mono (no peso).
+Why: Bodoni is the Italian typeface (Giambattista Bodoni, Parma): sharp, high contrast, and with its optical-size axis the hairlines thicken by themselves at 11px, so eyebrows and labels stay legible on a phone. The italic is the Venetian letter (Aldus Manutius cut the first italic in Venice in 1501), and EB Garamond Italic is its closest living descendant. The old set (Cinzel, Bricolage Grotesque, Familjen Grotesk, Reddit Mono) read as a tech product, not a trattoria.
+**Peso sign U+20B1:** Bodoni Moda, Libre Bodoni and Marcellus have none; Cormorant Garamond and EB Garamond do (in latin-ext). The full EB Garamond latin-ext file is 114 KB, so `src/assets/fonts/la-roma-peso.woff2` holds only that one glyph (1 KB, weight axis kept), declared in `app.css` as "La Roma Peso" with `unicode-range: U+20B1` and listed FIRST in every stack that can print a price (Bodoni's own latin-ext file claims U+20B1 without containing it, so listed after Bodoni it costs a 25 KB fetch). Rebuild it with:
+`python3 -m fontTools.subset node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-ext-wght-normal.woff2 --unicodes=U+20B1 --flavor=woff2 --layout-features= --no-hinting --desubroutinize --output-file=src/assets/fonts/la-roma-peso.woff2`
+Compared before choosing (same menu text, phone width): Bodoni Moda + EB Garamond (chosen), Cormorant Garamond alone (too small an x-height for 14-16px reading), Cinzel + EB Garamond (Roman, but the same capitals as every Italian-restaurant template).
 
 ## Colour and contrast
 - Parchment pages: ink 16.5:1, ink-soft 9.4:1, ink-mute 5.8:1, red text 6.95:1, gold-text 6.49:1.

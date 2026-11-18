@@ -252,7 +252,7 @@
 .lr-glass__text {
   display: block;
   margin-top: 2px;
-  font: italic var(--fw-desc) 0.8125rem / 1.35 var(--font-desc);
+  font: italic var(--fw-desc) 0.9375rem / 1.28 var(--font-desc);
   color: var(--on-stage-mute);
 }
 

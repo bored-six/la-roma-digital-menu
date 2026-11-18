@@ -1,12 +1,10 @@
 /* =====================================================================
    La Roma design tokens. Source of truth for colour, type, space, shape,
    depth and motion. Mobile first (390px). See DESIGN.md for the rules.
-   Fonts (self-host via fontsource, import in the app entry):
-     @fontsource-variable/cinzel               display, section titles (wght 400-900)
-     @fontsource-variable/bricolage-grotesque  item names (import /opsz.css: wght 200-800 + opsz 12-96)
-     @fontsource-variable/familjen-grotesk     descriptions (import /wght-italic.css)
-     @fontsource-variable/reddit-mono          prices (wght 200-900, slashed zero, has the peso sign)
-   The peso sign U+20B1 lives in the latin-ext subset. Keep latin-ext loaded.
+   Fonts (self-host via fontsource, import in the app entry). Two Italian families, nothing else:
+     @fontsource-variable/bodoni-moda   titles, item names, prices, labels (import /opsz.css: wght 400-900 + opsz 6-96)
+     @fontsource-variable/eb-garamond   descriptions and taglines, always italic (import /wght-italic.css)
+   Bodoni Moda has no peso sign: U+20B1 comes from src/assets/fonts/la-roma-peso.woff2 (EB Garamond, one glyph, 1 KB).
    ===================================================================== */
 
 :root {
@@ -55,19 +53,23 @@
   --glass-blur: 14px;
 
   /* ---------- type ---------- */
-  --font-display: "Cinzel Variable", "Cinzel", "Trajan Pro", serif;
-  --font-name: "Bricolage Grotesque Variable", "Bricolage Grotesque", "Helvetica Neue", sans-serif;
-  --font-desc: "Familjen Grotesk Variable", "Familjen Grotesk", "Helvetica Neue", sans-serif;
-  --font-price: "Reddit Mono Variable", "Reddit Mono", ui-monospace, monospace;
+  /* Bodoni (Parma, 1790s) for everything that is set, EB Garamond italic (the Venetian letter) for everything that is read.
+     "La Roma Peso" is a 1 KB subset of EB Garamond holding only the peso sign, which Bodoni Moda does not have. It goes FIRST:
+     its unicode-range is just U+20B1, and Bodoni's latin-ext file also claims U+20B1 (without the glyph), so listed after it the
+     browser would download 25 KB of Bodoni latin-ext on every price page before falling through. */
+  --font-display: "La Roma Peso", "Bodoni Moda Variable", "Bodoni 72", Didot, serif;
+  --font-name: "La Roma Peso", "Bodoni Moda Variable", "Bodoni 72", Didot, serif;
+  --font-desc: "EB Garamond Variable", Garamond, Georgia, serif;
+  --font-price: "La Roma Peso", "Bodoni Moda Variable", "Bodoni 72", Didot, serif;
 
   /* scale (px at 390). Each role: size / line-height / tracking / weight */
   --fs-cover: clamp(2.75rem, 12.5vw, 4rem);      /* LA ROMA */
-  --fs-title: 1.875rem;                          /* section title, 30 */
+  --fs-title: 2rem;                              /* section title, 32 */
   --fs-stage-name: 2.125rem;                     /* dish name over the plate, 34 */
   --fs-eyebrow: 0.6875rem;                       /* LA ROMA / RESTAURANT / tagline, 11 */
-  --fs-name: 1.125rem;                           /* item name, 18 */
-  --fs-desc: 0.875rem;                           /* description, 14 */
-  --fs-price: 1.0625rem;                         /* list price, 17 */
+  --fs-name: 1.1875rem;                          /* item name, 19 */
+  --fs-desc: 1rem;                               /* description, 16 (Garamond runs small) */
+  --fs-price: 1.125rem;                          /* list price, 18 */
   --fs-price-hero: 1.375rem;                     /* price pill on stage, 22 */
   --fs-label: 0.6875rem;                         /* Anatomia labels, counters, 11 */
   --fs-meta: 0.75rem;                            /* indicator, page number, 12 */
@@ -75,21 +77,20 @@
   --lh-tight: 1.02;
   --lh-title: 1.1;
   --lh-name: 1.2;
-  --lh-desc: 1.45;
+  --lh-desc: 1.3;
 
-  --tr-cover: 0.04em;
-  --tr-title: 0.02em;
-  --tr-eyebrow: 0.32em;
+  --tr-cover: 0.05em;
+  --tr-title: -0.005em;
+  --tr-eyebrow: 0.28em;
   --tr-label: 0.08em;
-  --tr-price: -0.01em;
+  --tr-price: 0;
 
   --fw-title: 700;
   --fw-stage-name: 600;
   --fw-name: 700;
   --fw-desc: 400;          /* italic */
-  --fw-price: 800;
-  --fw-label: 500;
-  --opsz-name: 18;         /* Bricolage optical size, match font-size */
+  --fw-price: 700;
+  --fw-label: 600;
 
   /* ---------- space (4pt base) ---------- */
   --sp-1: 4px;

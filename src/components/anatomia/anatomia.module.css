@@ -313,7 +313,6 @@
   display: block;
   margin-top: 3px;
   font: var(--fw-name) 0.78rem / 1.18 var(--font-name);
-  font-variation-settings: 'opsz' 13;
   letter-spacing: -0.003em;
   color: var(--lr-ink);
   text-decoration: underline transparent;
@@ -346,6 +345,7 @@
   margin-top: 4px;
   font: italic var(--fw-desc) var(--fs-desc) / 1.4 var(--font-desc);
   color: var(--lr-ink-soft);
+  text-wrap: balance;
 }
 
 /* ---------- flat view (reduced motion): the labelled list, rings on the photo ---------- */

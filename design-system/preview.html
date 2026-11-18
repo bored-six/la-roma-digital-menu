@@ -7,7 +7,8 @@
 <!-- Google Fonts is for this preview only. The app self-hosts the same families via fontsource. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Cinzel:wght@400..900&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Reddit+Mono:wght@400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<style>@font-face { font-family: "La Roma Peso"; font-weight: 400 800; src: url(../src/assets/fonts/la-roma-peso.woff2) format("woff2"); unicode-range: U+20B1; }</style>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="stage.css">
 <style>
@@ -168,14 +169,14 @@
   <!-- TYPE -->
   <section class="sec">
     <p class="tag"><b>04</b> Type</p>
-    <div class="spec"><small>DISPLAY · Cinzel 700 · 30/33 · +0.02em · section titles, stage name (600)</small><div style="font:700 30px/1.1 var(--font-display);letter-spacing:.02em">All-Day Breakfast</div></div>
-    <div class="spec"><small>EYEBROW · Cinzel 600 · 11 · +0.32em · caps</small><div style="font:600 11px/1 var(--font-display);letter-spacing:.32em;color:var(--lr-red)">MADE FOR SHARING</div></div>
-    <div class="spec"><small>NAME · Bricolage Grotesque 700 · opsz 18 · 18/21.6</small><div class="name">Pancit Canton · Bam-E · Halo-Halo</div></div>
-    <div class="spec"><small>DESCRIPTION · Familjen Grotesk Italic 400 · 14/20.3</small><div class="desc">Tausug black beef soup with burnt coconut</div></div>
-    <div class="spec"><small>PRICE · Reddit Mono 800 · 17 · slashed zero · tabular</small><div class="peso"><span class="price">₱100</span><span class="price">₱1,050</span><span class="lr-pill"><span class="lr-pill__cur">₱</span>300</span></div></div>
-    <div class="spec"><small>LABEL · Reddit Mono 500 · 11 · +0.08em · caps</small><div style="font:500 11px/1 var(--font-price);letter-spacing:.08em">01 GARLIC FRIED RICE · 02 SUNNY-SIDE-UP EGG</div></div>
-    <div class="spec"><small>PESO SIGN U+20B1 in each family (Cinzel has none: never set a price in it)</small>
-      <div class="peso" style="font-size:24px"><span style="font-family:var(--font-price);font-weight:800">₱0</span><span style="font-family:var(--font-name);font-weight:700">₱0</span><span style="font-family:var(--font-desc);font-style:italic">₱0</span><span style="font-family:var(--font-display);color:var(--lr-ink-mute)">₱ fallback</span></div></div>
+    <div class="spec"><small>DISPLAY · Bodoni Moda 700 · 32/35 · section titles, stage name (600, fitted to one line)</small><div style="font:700 32px/1.1 var(--font-display);letter-spacing:-.005em">All-Day Breakfast</div></div>
+    <div class="spec"><small>EYEBROW · Bodoni Moda 600 · 11 · +0.28em · caps</small><div style="font:600 11px/1 var(--font-display);letter-spacing:.28em;color:var(--lr-red)">MADE FOR SHARING</div></div>
+    <div class="spec"><small>NAME · Bodoni Moda 700 · opsz auto · 19/23</small><div class="name">Pancit Canton · Bam-E · Halo-Halo</div></div>
+    <div class="spec"><small>DESCRIPTION · EB Garamond Italic 400 · 16/21</small><div class="desc">Tausug black beef soup with burnt coconut</div></div>
+    <div class="spec"><small>PRICE · Bodoni Moda 700 · 18 · lining, tabular · peso from La Roma Peso</small><div class="peso"><span class="price">₱100</span><span class="price">₱1,050</span><span class="lr-pill"><span class="lr-pill__cur">₱</span>300</span></div></div>
+    <div class="spec"><small>LABEL · Bodoni Moda 600 · 11 · +0.08em · caps</small><div style="font:500 11px/1 var(--font-price);letter-spacing:.08em">01 GARLIC FRIED RICE · 02 SUNNY-SIDE-UP EGG</div></div>
+    <div class="spec"><small>PESO SIGN U+20B1: Bodoni Moda has none, so it falls through to La Roma Peso</small>
+      <div class="peso" style="font-size:24px"><span style="font-family:var(--font-price);font-weight:700">₱0</span><span style="font-family:var(--font-name);font-weight:700">₱0</span><span style="font-family:var(--font-desc);font-style:italic">₱0</span><span style="font-family:var(--font-display);color:var(--lr-ink-mute)">₱ display</span></div></div>
   </section>
 
   <!-- COLOUR -->

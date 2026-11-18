@@ -4,6 +4,7 @@ import { SplitText } from 'gsap/SplitText';
 import { motion } from '../../lib/motion';
 import { formatPrice } from '../../lib/price';
 import type { Item } from '../../types';
+import { keepTitleFitted } from './fitTitle';
 import s from './stage.module.css';
 
 gsap.registerPlugin(SplitText);
@@ -22,13 +23,6 @@ interface StageHeadlineProps {
   /** The stage is on screen: reveal now. Before that the text stays hidden so the reveal is seen. */
   play: boolean;
   reduced: boolean;
-}
-
-function lengthClass(name: string): 'd' | 'm' | 'l' | 'xl' {
-  if (name.length <= 13) return 'd';
-  if (name.length <= 20) return 'm';
-  if (name.length <= 27) return 'l';
-  return 'xl';
 }
 
 /**
@@ -66,6 +60,13 @@ export const StageHeadline = forwardRef<HeadlineHandle, StageHeadlineProps>(func
     }),
     [reduced],
   );
+
+  // The name is sized to fit one line before anything is revealed, and kept fitted when the box or the font changes.
+  useLayoutEffect(() => {
+    const title = titleRef.current;
+    if (title === null) return;
+    return keepTitleFitted(title);
+  }, [item.id]);
 
   useLayoutEffect(() => {
     const title = titleRef.current;
@@ -130,7 +131,7 @@ export const StageHeadline = forwardRef<HeadlineHandle, StageHeadlineProps>(func
       <p ref={eyebrowRef} className="lr-stage__eyebrow">
         {eyebrow}
       </p>
-      <p key={item.id} ref={titleRef} className={`lr-stage__title ${s.title}`} data-len={lengthClass(item.name)}>
+      <p key={item.id} ref={titleRef} className={`lr-stage__title ${s.title}`}>
         {item.name}
       </p>
       {hasCard && (

@@ -14,7 +14,7 @@ interface SectionTitleProps {
 }
 
 /**
- * Icon + Cinzel title (letters rise in), tagline, then the gold rule that draws itself and ends in the diamond.
+ * Icon + Bodoni title (letters rise in), tagline, then the gold rule that draws itself and ends in the diamond.
  * Plays once, the first time it is on screen.
  */
 export function SectionTitle({ category, id }: SectionTitleProps) {

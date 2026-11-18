@@ -18,7 +18,7 @@ Colors are sampled from the page renders, so treat them as close, not exact.
 - Gold rule under each section title ending in a diamond
 - Dotted leader lines between item name and price
 - Olive sprig ornament in the top-left corner, small flourish with a diamond at the page foot
-- Roman small-caps serif for section titles; bold grotesque for item names; italic for descriptions
+- The PDF uses Roman small-caps for titles and a bold grotesque for names. The web build deliberately does not copy that: Bodoni Moda (Italian) for titles, names and prices, EB Garamond Italic for descriptions (see design-system/DESIGN.md, Type)
 - Prices written with the peso sign, e.g. `₱150`
 - Each section has a small line icon and a one-line tagline ("Rice without limits", "One scoop is never enough", "Crispy and sizzling")
 

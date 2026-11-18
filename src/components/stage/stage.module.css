@@ -192,15 +192,6 @@
   display: block;
   perspective: 600px;
 }
-.stage .title[data-len='m'] {
-  font-size: 1.875rem;
-}
-.stage .title[data-len='l'] {
-  font-size: 1.625rem;
-}
-.stage .title[data-len='xl'] {
-  font-size: 1.375rem;
-}
 .titleWord {
   display: inline-block;
   white-space: nowrap;
