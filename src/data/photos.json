@@ -363,6 +363,13 @@
     "background": "table",
     "plate": { "cx": 0.417, "cy": 0.5, "r": 0.21 }
   },
+  "pale-pilsen": {
+    "file": "dishes/pale-pilsen.jpg",
+    "alt": "San Miguel Pale Pilsen beer bottle standing on a maple table",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.467, "r": 0.333 }
+  },
   "pancit-canton": {
     "file": "dishes/pancit-canton.jpg",
     "alt": "Stir-fried pancit canton with chicken strips and vegetables on a plate, above a tuna steak, a bowl of rice and a halo-halo",
@@ -411,6 +418,13 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.499, "r": 0.336 }
+  },
+  "red-horse": {
+    "file": "dishes/red-horse.jpg",
+    "alt": "Red Horse Extra Strong beer bottle beside a glass of beer on a maple table",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.467, "r": 0.333 }
   },
   "salad-combo-a": {
     "file": "dishes/salad-combo-a.jpg",

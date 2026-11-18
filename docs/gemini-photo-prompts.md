@@ -53,7 +53,8 @@ Props: nothing, except optionally a folded cream linen napkin in one corner. No 
 Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
 ```
 
-## Left out on purpose (8)
+## Left out on purpose (6)
 
-`bottled-water`, `coke-sprite-royal-mountain-dew`, `coke-1-5-l`, `san-mig-apple`, `san-mig-light`, `pale-pilsen`, `red-horse`, `cali`.
+`bottled-water`, `coke-sprite-royal-mountain-dew`, `coke-1-5-l`, `san-mig-apple`, `san-mig-light`, `cali`.
 Gemini invents fake or wrong brand labels on bottles, and these are real brands. The placeholder plate covers them.
+`pale-pilsen` and `red-horse` were done differently: real Wikimedia Commons photos, cut out with macOS subject lifting and set on a synthetic maple background (credits in `docs/photo-credits.md`). The San Mig Light and Apple photos on Commons are cropped at the cap and base, so they do not work that way.
