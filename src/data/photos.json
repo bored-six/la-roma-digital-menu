@@ -384,6 +384,13 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.317, "r": 0.32 }
   },
+  "salad-solo": {
+    "file": "dishes/salad-solo.jpg",
+    "alt": "Fresh salad of lettuce, carrot, cucumber, tomato and red onion in a bowl, with a small cup of dressing beside it",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.5, "r": 0.264 }
+  },
   "seafood-veggies": {
     "file": "dishes/seafood-veggies.jpg",
     "alt": "Stir-fried vegetables with shrimp, squid rings, quail eggs and meat in a bowl",

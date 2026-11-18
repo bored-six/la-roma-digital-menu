@@ -1,6 +1,6 @@
 # Gemini prompts for the missing dish photos
 
-13 dishes still have no photo (the menu has 111 items, 79 are covered). 8 bottled drinks are left out on purpose, see the end.
+12 dishes still have no photo (the menu has 111 items, 80 are covered). 8 bottled drinks are left out on purpose, see the end.
 Where a dish has no photo the app shows the placeholder plate, so nothing breaks if you skip some.
 
 ## How to use it
@@ -37,21 +37,6 @@ Never include: text, logos, brand labels, watermarks, people, hands, extra dishe
 ```
 
 ## Salad
-
-### `salad-solo`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Fresh lettuce, carrot, cucumber, tomato and red onion in a small cream bowl, a small cup of salad dressing beside it.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
 
 ### `salad-combo-d`
 ```

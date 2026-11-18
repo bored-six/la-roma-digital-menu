@@ -56,6 +56,7 @@ const SIZES: Readonly<Record<string, { readonly w: number; readonly h: number }>
   'dishes/salad-combo-a.jpg': { w: 900, h: 900 },
   'dishes/salad-combo-b.jpg': { w: 900, h: 900 },
   'dishes/salad-combo-c.jpg': { w: 502, h: 900 },
+  'dishes/salad-solo.jpg': { w: 900, h: 900 },
   'dishes/seafood-veggies.jpg': { w: 900, h: 900 },
   'dishes/shrimp-in-coconut-sauce.jpg': { w: 900, h: 900 },
   'dishes/sinigang-na-baboy.jpg': { w: 900, h: 900 },
