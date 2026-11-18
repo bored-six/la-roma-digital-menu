@@ -27,6 +27,27 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.342, "r": 0.265 }
   },
+  "battered-chicken": {
+    "file": "dishes/battered-chicken.jpg",
+    "alt": "Golden battered fried chicken pieces on a plate with a mound of rice and a cup of creamy dip",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.497, "r": 0.335 }
+  },
+  "bihon": {
+    "file": "dishes/bihon.jpg",
+    "alt": "Stir-fried thin rice noodles with shredded chicken, carrot, cabbage and spring onion on a plate, with a calamansi half",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.387 }
+  },
+  "buffalo-chicken": {
+    "file": "dishes/buffalo-chicken.jpg",
+    "alt": "Chicken wings in orange buffalo sauce on a plate with celery sticks and a mound of rice",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.497, "r": 0.328 }
+  },
   "bulalo": {
     "file": "dishes/bulalo.jpg",
     "alt": "Beef shank and bone-marrow soup with corn and cabbage in a white bowl",
@@ -62,12 +83,40 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.5, "r": 0.343 }
   },
+  "chopsuey": {
+    "file": "dishes/chopsuey.jpg",
+    "alt": "Chopsuey of broccoli, cauliflower, carrot, baby corn, snow peas and chicken in a light sauce, in a shallow bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.497, "cy": 0.497, "r": 0.33 }
+  },
   "crispy-pata-regular": {
     "file": "dishes/crispy-pata-regular.jpg",
     "alt": "Deep-fried crispy pata with soy dipping sauce on a plate, with a sizzling pork sisig plate behind it",
     "alsoFor": ["crispy-pata-large", "pork-sisig"],
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.645, "r": 0.34 }
+  },
+  "crispy-pork-liempo": {
+    "file": "dishes/crispy-pork-liempo.jpg",
+    "alt": "Sliced crispy pork belly with blistered golden skin on a plate, with a mound of rice, a calamansi half and a cup of vinegar dip",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.497, "r": 0.335 }
+  },
+  "fried-pompano": {
+    "file": "dishes/fried-pompano.jpg",
+    "alt": "Whole fried pompano with parsley and a lemon wedge on a plate, with a mound of rice",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.325 }
+  },
+  "fried-tuna-buntot": {
+    "file": "dishes/fried-tuna-buntot.jpg",
+    "alt": "Fried fish tail in a golden crisp coating on a plate, with a mound of rice, a calamansi half and a cup of vinegar dip",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.335 }
   },
   "fries": {
     "file": "dishes/fries.jpg",
@@ -82,6 +131,20 @@
     "alsoFor": [],
     "background": "board",
     "plate": { "cx": 0.499, "cy": 0.488, "r": 0.429 }
+  },
+  "grilled-pompano": {
+    "file": "dishes/grilled-pompano.jpg",
+    "alt": "Whole grilled pompano with herbs and a lemon wedge on a plate, with a mound of rice",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.353 }
+  },
+  "grilled-pork-chop": {
+    "file": "dishes/grilled-pork-chop.jpg",
+    "alt": "Grilled bone-in pork chop with sliced tomato and red onion on a plate, with a mound of rice",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.497, "cy": 0.495, "r": 0.33 }
   },
   "grilled-pork-liempo": {
     "file": "dishes/grilled-pork-liempo.jpg",
@@ -125,6 +188,13 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.325, "r": 0.285 }
   },
+  "hungarian-sausage": {
+    "file": "dishes/hungarian-sausage.jpg",
+    "alt": "Garlic fried rice topped with a sunny-side-up egg, with sliced grilled Hungarian sausage and two tomato slices on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.368 }
+  },
   "iced-tea": {
     "file": "dishes/iced-tea.jpg",
     "alt": "Glass of iced tea with a lemon slice, above a blue lemonade and a buko pandan shake",
@@ -160,12 +230,33 @@
     "background": "board",
     "plate": { "cx": 0.5, "cy": 0.498, "r": 0.445 }
   },
+  "pork-bbq-3-sticks": {
+    "file": "dishes/pork-bbq-3-sticks.jpg",
+    "alt": "Three glazed pork BBQ skewers on a plate with a mound of rice and a small cup of spiced vinegar",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.499, "r": 0.388 }
+  },
+  "pork-hungarian": {
+    "file": "dishes/pork-hungarian.jpg",
+    "alt": "Sliced grilled Hungarian-style sausage on a plate with a mound of rice and a cup of ketchup and mustard",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.499, "r": 0.336 }
+  },
   "salad-combo-c": {
     "file": "dishes/salad-combo-c.jpg",
     "alt": "Chicken katsu with fries and salad on a plate, with a plate of rice topped with diced fruit and tomato below it",
     "alsoFor": ["binagoongan-fried-rice"],
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.317, "r": 0.32 }
+  },
+  "seafood-veggies": {
+    "file": "dishes/seafood-veggies.jpg",
+    "alt": "Stir-fried vegetables with shrimp, squid rings, quail eggs and meat in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.503, "r": 0.339 }
   },
   "shrimp-in-coconut-sauce": {
     "file": "dishes/shrimp-in-coconut-sauce.jpg",
@@ -181,6 +272,13 @@
     "background": "table",
     "plate": { "cx": 0.605, "cy": 0.5, "r": 0.21 }
   },
+  "sotanghon": {
+    "file": "dishes/sotanghon.jpg",
+    "alt": "Stir-fried glass noodles with shredded chicken, carrot, cabbage and spring onion on a plate, with a calamansi half",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.493, "cy": 0.495, "r": 0.391 }
+  },
   "sweet-and-sour-fish-fillet": {
     "file": "dishes/sweet-and-sour-fish-fillet.jpg",
     "alt": "Sweet and sour fish fillet with peppers on a plate, with a bowl of shrimp sinigang below it",
@@ -194,6 +292,20 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.499, "r": 0.382 }
+  },
+  "tinolang-isda": {
+    "file": "dishes/tinolang-isda.jpg",
+    "alt": "Fish pieces with green papaya and moringa leaves in a clear broth, in a bowl on a plate with a mound of rice",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.499, "r": 0.396 }
+  },
+  "tuna-sisig": {
+    "file": "dishes/tuna-sisig.jpg",
+    "alt": "Chopped sisig with red onion, green chili and a mayo drizzle on a plate, with a mound of rice and a calamansi half",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.387 }
   },
   "tyulah-itum": {
     "file": "dishes/tyulah-itum.jpg",
