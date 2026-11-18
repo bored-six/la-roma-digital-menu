@@ -59,14 +59,15 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
   const headlineRef = useRef<HeadlineHandle>(null);
   const tilesRef = useRef<OptionTilesHandle>(null);
   const swapToken = useRef(0);
-  const focusSlot = useRef<number | null>(null);
+  /** A tile tap parks "focus this tile once dish `id` has landed" here. Only that swap may use it; every other path drops it. */
+  const focusSlot = useRef<{ id: string; slot: number } | null>(null);
   const everSwapped = useRef(false);
 
   const anatomiaBtnRef = useRef<HTMLButtonElement>(null);
   const swapInFlight = useRef(false);
   const [anatomiaOpen, setAnatomiaOpen] = useState(false);
-  /** Consecutive failed loads of the Anatomia chunk. */
-  const [anatomiaFails, setAnatomiaFails] = useState(0);
+  /** The Anatomia chunk (or the sheet) failed once. Chrome keeps a failed module fetch for the page's life, so from here on the button reloads. */
+  const [anatomiaFailed, setAnatomiaFailed] = useState(false);
   const [announce, setAnnounce] = useState('');
 
   const shown = items.find((i) => i.id === displayedId) ?? items.find((i) => i.id === wantedId) ?? items[0];
@@ -99,6 +100,11 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
 
   // ---------- the swap ----------
   useEffect(() => {
+    // The tile tap that parked a focus request is only the swap to ITS dish. Anything else running here cancelled it: a different
+    // dish took over (list row), the dish already on the plate was picked, the page was left, nothing is wanted. Drop the request,
+    // or a later list-row swap would steal focus to a tile. (Unmount needs nothing: the ref dies with the component.)
+    const parked = focusSlot.current;
+    if (parked !== null && (parked.id !== wantedId || wantedId === displayedRef.current || !active)) focusSlot.current = null;
     if (wantedId === null) return;
     const swapEl = swapRef.current;
     if (wantedId === displayedRef.current) {
@@ -153,10 +159,9 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
           );
         }
       }
-      if (focusSlot.current !== null) {
-        tilesRef.current?.focusSlot(focusSlot.current);
-        focusSlot.current = null;
-      }
+      const parkedFocus = focusSlot.current;
+      focusSlot.current = null;
+      if (parkedFocus !== null && parkedFocus.id === nextId) tilesRef.current?.focusSlot(parkedFocus.slot);
       const label = next ? `Showing ${next.name}${next.price === null ? '' : `, ${formatPrice(next.price)}`}` : '';
       setAnnounce(label);
     };
@@ -198,7 +203,7 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
 
   const onPick = useCallback(
     (id: string, slotIndex: number) => {
-      focusSlot.current = slotIndex;
+      focusSlot.current = { id, slot: slotIndex };
       onSelect(id);
     },
     [onSelect],
@@ -230,9 +235,9 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
             onPointerEnter={preloadAnatomia}
             onFocus={preloadAnatomia}
             onClick={() => {
-              // Chrome remembers a failed module fetch for the rest of the page's life, so after a second failure the only honest
-              // retry is a reload (the hash keeps the page).
-              if (anatomiaFails >= 2) {
+              // Chrome remembers a failed module fetch for the rest of the page's life, so after the first failure the only honest
+              // retry is a reload (usePager mirrors the page into the hash, so the reload lands on the same page).
+              if (anatomiaFailed) {
                 window.location.reload();
                 return;
               }
@@ -240,7 +245,7 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
             }}
           >
             <LayersMark className={s.btnMark} />
-            <span>{anatomiaFails >= 2 ? 'Reload' : anatomiaFails === 1 ? 'Try again' : 'Anatomia'}</span>
+            <span>{anatomiaFailed ? 'Reload' : 'Anatomia'}</span>
           </button>
         )}
 
@@ -266,11 +271,10 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
       {anatomiaOpen && anatomy !== null && (
         <AnatomiaBoundary
           onFail={() => {
-            // chunk fetch failed or the sheet threw: close it, say so on the button, and the next press retries
-            // (a sheet that opens fine resets the count: see onClose below)
+            // chunk fetch failed or the sheet threw: close it, the app stays alive, and the button turns into Reload
             setAnatomiaOpen(false);
-            setAnatomiaFails((n) => n + 1);
-            setAnnounce('Anatomia could not load. Press the button to try again.');
+            setAnatomiaFailed(true);
+            setAnnounce('Anatomia could not load. Press Reload to try again.');
           }}
         >
           <Suspense fallback={null}>
@@ -279,10 +283,7 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
               photo={anatomy.entry}
               regions={anatomy.regions}
               returnFocusRef={anatomiaBtnRef}
-              onClose={() => {
-                setAnatomiaFails(0);
-                setAnatomiaOpen(false);
-              }}
+              onClose={() => setAnatomiaOpen(false)}
             />
           </Suspense>
         </AnatomiaBoundary>
