@@ -21,11 +21,11 @@ Every dish below is ONE complete prompt: the style lock is already inside it. Co
 
 ## Beef
 
-### `beef-liver-steak`
+### `beef-steak`
 ```
 Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
 
-Dish: Pan-seared beef liver in a soy-onion sauce with onion rings.
+Dish: Filipino beef steak (bistek): thin beef slices braised in soy and calamansi, topped with caramelised onion rings.
 
 Camera: straight top-down (90 degrees overhead), the dish centred.
 Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.

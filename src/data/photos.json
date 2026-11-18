@@ -41,19 +41,19 @@
     "background": "table",
     "plate": { "cx": 0.499, "cy": 0.497, "r": 0.366 }
   },
+  "beef-liver-steak": {
+    "file": "dishes/beef-liver-steak.jpg",
+    "alt": "Slices of beef liver in a dark soy sauce with onion rings and spring onion on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.497, "r": 0.375 }
+  },
   "beef-sisig": {
     "file": "dishes/beef-sisig.jpg",
     "alt": "Chopped beef sisig with red onion rings, green and red chili and a calamansi half on a plate",
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.503, "cy": 0.493, "r": 0.369 }
-  },
-  "beef-steak": {
-    "file": "dishes/beef-steak.jpg",
-    "alt": "Thin slices of beef braised in soy sauce with onion rings and spring onion on a plate",
-    "alsoFor": [],
-    "background": "table",
-    "plate": { "cx": 0.501, "cy": 0.497, "r": 0.375 }
   },
   "bihon": {
     "file": "dishes/bihon.jpg",
