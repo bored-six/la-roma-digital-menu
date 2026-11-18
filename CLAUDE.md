@@ -18,7 +18,7 @@ Vite + React 18 + TypeScript (strict), GSAP (core, Draggable, SplitText, @gsap/r
 Commands: `npm run dev` (port 5173, or see `.claude/launch.json`), `npm test`, `npm run typecheck`, `npm run build`.
 
 ## Status
-Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 29 dish photos, 328 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; fixes in progress.
+Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 29 dish photos, 331 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; all fixed and the second review round approved (HEAD 5ac699d). Hosting works from any static folder (relative base), not from file://.
 Open: real Facebook URL (`src/data/site.ts` placeholder); photos for about 70 items; Safari/iOS untested; Unli Rice page keeps only the first PDF tagline.
 
 ## Where things live
