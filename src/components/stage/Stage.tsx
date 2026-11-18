@@ -229,8 +229,8 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
           <button
             type="button"
             className={`lr-stage-btn ${s.anatomiaBtn}`}
-            aria-haspopup="dialog"
-            aria-expanded={anatomiaOpen}
+            aria-haspopup={anatomiaFailed ? undefined : 'dialog'}
+            aria-expanded={anatomiaFailed ? undefined : anatomiaOpen}
             ref={anatomiaBtnRef}
             onPointerEnter={preloadAnatomia}
             onFocus={preloadAnatomia}
