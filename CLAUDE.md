@@ -18,7 +18,9 @@ Vite + React 18 + TypeScript (strict), GSAP (core, Draggable, SplitText, @gsap/r
 Commands: `npm run dev` (port 5173, or see `.claude/launch.json`), `npm test`, `npm run typecheck`, `npm run build`.
 
 ## Status
-Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 29 dish photos, 331 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; all fixed and the second review round approved (HEAD 5ac699d). Hosting works from any static folder (relative base), not from file://.
+Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 29 dish photos, 343 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; all fixed and the second review round approved. Hosting works from any static folder (relative base), not from file://.
+Live: https://bored-six.github.io/la-roma-digital-menu/ (public repo bored-six/la-roma-digital-menu). `.github/workflows/deploy.yml` runs tests, builds and publishes to GitHub Pages on every push to main. `reference/` is gitignored (kept local only, not in the public repo). Commits use the GitHub noreply email (repo-local git config).
+Photo prompts for the 51 dishes still missing a photo: `docs/gemini-photo-prompts.md`.
 Open: real Facebook URL (`src/data/site.ts` placeholder); photos for about 70 items; Safari/iOS untested; Unli Rice page keeps only the first PDF tagline.
 
 ## Where things live
