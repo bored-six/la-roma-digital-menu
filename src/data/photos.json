@@ -90,6 +90,13 @@
     "background": "board",
     "plate": { "cx": 0.499, "cy": 0.496, "r": 0.448 }
   },
+  "chicharon-bulaklak": {
+    "file": "dishes/chicharon-bulaklak.jpg",
+    "alt": "Ruffled deep-fried chicharon bulaklak on a plate with a small cup of vinegar dip with onion and chili",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.37 }
+  },
   "chicken-bbq": {
     "file": "dishes/chicken-bbq.jpg",
     "alt": "Grilled chicken BBQ on a skewer with rice on a plate, with a bowl of pinakbet below it",
@@ -125,6 +132,20 @@
     "background": "table",
     "plate": { "cx": 0.497, "cy": 0.495, "r": 0.347 }
   },
+  "clam-soup": {
+    "file": "dishes/clam-soup.jpg",
+    "alt": "Clams in a clear ginger broth with spring onion, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.497, "cy": 0.499, "r": 0.264 }
+  },
+  "corn-soup": {
+    "file": "dishes/corn-soup.jpg",
+    "alt": "Creamy yellow corn soup with egg ribbons and chopped spring onion, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.498, "cy": 0.5, "r": 0.264 }
+  },
   "crispy-pata-regular": {
     "file": "dishes/crispy-pata-regular.jpg",
     "alt": "Deep-fried crispy pata with soy dipping sauce on a plate, with a sizzling pork sisig plate behind it",
@@ -138,6 +159,27 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.497, "r": 0.335 }
+  },
+  "crispy-shrimps": {
+    "file": "dishes/crispy-shrimps.jpg",
+    "alt": "Crispy battered shrimp with tails on a plate, with a cup of sweet chili sauce and a lemon wedge",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.347 }
+  },
+  "fish-fillet-black-bean-sauce": {
+    "file": "dishes/fish-fillet-black-bean-sauce.jpg",
+    "alt": "Crispy fish fillet strips in a glossy black bean sauce with spring onion, ginger and red chili on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.497, "r": 0.358 }
+  },
+  "fish-fillet-tartar-sauce": {
+    "file": "dishes/fish-fillet-tartar-sauce.jpg",
+    "alt": "Golden breaded fish fillet with parsley, lemon wedges and a spoon of tartar sauce on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.497, "r": 0.345 }
   },
   "fried-pompano": {
     "file": "dishes/fried-pompano.jpg",
@@ -258,6 +300,13 @@
     "background": "table",
     "plate": { "cx": 0.499, "cy": 0.497, "r": 0.366 }
   },
+  "lomi": {
+    "file": "dishes/lomi.jpg",
+    "alt": "Thick egg-noodle lomi soup with pork slices, a halved boiled egg, fish balls and spring onion, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.5, "r": 0.27 }
+  },
   "lumpia-shanghai": {
     "file": "dishes/lumpia-shanghai.jpg",
     "alt": "Crispy lumpia shanghai spring rolls stacked on a plate with a cup of sweet chili sauce",
@@ -278,6 +327,13 @@
     "alsoFor": ["plain-scoop-rice"],
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.19, "r": 0.22 }
+  },
+  "pata-with-pork-and-beans": {
+    "file": "dishes/pata-with-pork-and-beans.jpg",
+    "alt": "Braised pork hock pieces with white beans in a red-brown sauce, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.37 }
   },
   "pepperoni": {
     "file": "dishes/pepperoni.jpg",
@@ -307,6 +363,20 @@
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.499, "r": 0.336 }
   },
+  "salad-combo-a": {
+    "file": "dishes/salad-combo-a.jpg",
+    "alt": "Plate of French fries, chicken BBQ skewers and a fresh salad of lettuce, cucumber and tomato",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.5, "cy": 0.5, "r": 0.265 }
+  },
+  "salad-combo-b": {
+    "file": "dishes/salad-combo-b.jpg",
+    "alt": "Plate of French fries, buttered chicken pieces and a fresh salad of lettuce, cucumber and tomato",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.501, "r": 0.263 }
+  },
   "salad-combo-c": {
     "file": "dishes/salad-combo-c.jpg",
     "alt": "Chicken katsu with fries and salad on a plate, with a plate of rice topped with diced fruit and tomato below it",
@@ -327,6 +397,13 @@
     "alsoFor": [],
     "background": "board",
     "plate": { "cx": 0.5, "cy": 0.5, "r": 0.445 }
+  },
+  "sinigang-na-baboy": {
+    "file": "dishes/sinigang-na-baboy.jpg",
+    "alt": "Pork rib sinigang in a sour tamarind broth with water spinach, radish, eggplant, string beans and tomato, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.497, "cy": 0.499, "r": 0.342 }
   },
   "small-bilao": {
     "file": "dishes/small-bilao.jpg",

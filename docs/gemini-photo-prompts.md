@@ -1,6 +1,6 @@
 # Gemini prompts for the missing dish photos
 
-24 dishes still have no photo (the menu has 111 items, 68 are covered). 8 bottled drinks are left out on purpose, see the end.
+13 dishes still have no photo (the menu has 111 items, 79 are covered). 8 bottled drinks are left out on purpose, see the end.
 Where a dish has no photo the app shows the placeholder plate, so nothing breaks if you skip some.
 
 ## How to use it
@@ -36,147 +36,6 @@ Props: nothing, except optionally a folded cream linen napkin in one corner. No 
 Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
 ```
 
-## Pork
-
-### `pata-with-pork-and-beans`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Braised pork hock (pata) with pork and beans in a red-brown sauce, in a shallow cream bowl.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `chicharon-bulaklak`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Chicharon bulaklak, ruffled golden crispy fried pork "flowers", a small cup of vinegar dip with chili and onion.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-## From the Sea
-
-### `fish-fillet-black-bean-sauce`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Crispy fish fillet strips in a glossy black bean sauce with spring onion and red chili slices.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `fish-fillet-tartar-sauce`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Golden breaded fish fillet with a spoon of white tartar sauce and a lemon wedge.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `crispy-shrimps`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Crispy golden battered shrimp with tails on, a small cup of sweet chili dip, a lemon wedge.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-## Soup
-
-### `sinigang-na-baboy`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Sinigang na baboy, pork ribs in a sour tamarind broth with kangkong, radish, eggplant, string beans and tomato.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `corn-soup`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Creamy yellow corn soup with egg ribbons and chopped spring onion.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `clam-soup`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Clams in a clear ginger broth with spring onion, some shells open.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `lomi`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: Lomi, a thick golden-brown egg-noodle soup with pork slices, a halved boiled egg, fish balls and spring onion.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
 ## Salad
 
 ### `salad-solo`
@@ -184,36 +43,6 @@ Never include: text, logos, brand labels, watermarks, people, hands, extra dishe
 Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
 
 Dish: Fresh lettuce, carrot, cucumber, tomato and red onion in a small cream bowl, a small cup of salad dressing beside it.
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `salad-combo-a`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: One plate with French fries, two chicken BBQ skewers and a fresh salad (lettuce, tomato, cucumber).
-
-Camera: straight top-down (90 degrees overhead), the dish centred.
-Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
-Surface: pale natural maple wood tabletop with fine matte grain, filling the whole frame around the plate.
-Light: soft diffuse daylight from a window at the upper left, very soft short shadows, high-key, bright and airy, gentle warm white balance, natural saturation, low contrast.
-Food: freshly cooked and appetising, a realistic home-style Filipino restaurant portion, natural imperfections, no over-glossing, no CGI look.
-Props: nothing, except optionally a folded cream linen napkin in one corner. No cutlery unless the dish needs it.
-Never include: text, logos, brand labels, watermarks, people, hands, extra dishes, steam, smoke, dark or moody backgrounds, neon colours, illustration or 3D render looks.
-```
-
-### `salad-combo-b`
-```
-Generate ONE square 1:1 photo for a restaurant menu, in EXACTLY the same photographic style as the attached reference photos: same plate, same table, same light, same colour grade. Do not restyle anything.
-
-Dish: One plate with French fries, buttered chicken pieces and a fresh salad (lettuce, tomato, cucumber).
 
 Camera: straight top-down (90 degrees overhead), the dish centred.
 Plate: round matte off-white ceramic plate with a thin terracotta-red line along the rim, centred, filling about 80 percent of the image width. Soups and stews use a matching cream bowl with the same red rim line.
