@@ -1,7 +1,8 @@
 import { useMemo, type ReactNode } from 'react';
+import { useNeighboursReady } from '../../hooks/useNeighboursReady';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { PagerContext, usePager, type PagerApi } from '../../hooks/usePager';
-import { pageLabel } from '../../lib/pager';
+import { isNearPage, pageLabel } from '../../lib/pager';
 import type { Page } from '../../types';
 import { Arrow } from '../ornaments/Svg';
 import { Indicator } from './Indicator';
@@ -10,7 +11,7 @@ export interface PageState {
   index: number;
   /** The settled current page (not a page the track is merely flying past). */
   active: boolean;
-  /** Settled page or either neighbour: the only ones allowed to fetch photos. */
+  /** Settled page, plus either neighbour once the first screen has loaded and gone idle: the only ones allowed to fetch photos. */
   near: boolean;
 }
 
@@ -44,6 +45,7 @@ function PageSlot({ page, index, count, children }: PageSlotProps) {
 
 export function Pager({ pages, renderPage }: PagerProps) {
   const reduced = useReducedMotion();
+  const neighboursReady = useNeighboursReady();
   const { trackRef, veilRef, activeIndex, liveIndex, count, goTo, goToId, getPage, setLocked } = usePager(pages, reduced);
 
   const api = useMemo<PagerApi>(
@@ -63,7 +65,7 @@ export function Pager({ pages, renderPage }: PagerProps) {
                 {renderPage(page, {
                   index,
                   active: index === activeIndex,
-                  near: Math.abs(index - activeIndex) <= 1,
+                  near: isNearPage(index, activeIndex, neighboursReady),
                 })}
               </PageSlot>
             ))}

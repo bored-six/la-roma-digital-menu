@@ -34,7 +34,8 @@ export function Stage({ items, selectedId, onSelect, active, near }: StageProps)
   const reduced = useReducedMotion();
 
   // Photos: not a single <img> is rendered until this stage has been near the current page once (spec section 6), then they stay.
-  // `near` is current page +-1; a parent that does not pass it gets the stricter "only when active".
+  // `near` is the current page, plus its neighbours once the first screen has settled (lib/pager isNearPage); a parent that does not
+  // pass it gets the stricter "only when active".
   const isNear = near ?? active;
   const everNear = useRef(isNear);
   if (isNear) everNear.current = true;

@@ -32,6 +32,14 @@ export function pageIndexFromHash(hash: string, pages: readonly Page[]): number 
   return index === -1 ? 0 : index;
 }
 
+/**
+ * May this page fetch photos? The current page always; its neighbours only once the first screen has settled
+ * (see whenSettled), so the cover's first load is not shared with photos of a page nobody has opened.
+ */
+export function isNearPage(index: number, activeIndex: number, neighboursReady: boolean): boolean {
+  return Math.abs(index - activeIndex) <= (neighboursReady ? 1 : 0);
+}
+
 /** Indicator text for any page. Cover and closing carry no label in the data, so they are named here. */
 export function pageLabel(page: Page): string {
   if (page.kind === 'cover') return 'La Roma';

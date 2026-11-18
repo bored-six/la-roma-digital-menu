@@ -49,3 +49,10 @@ What works: `osascript -l JavaScript script.js <pdf> <outdir>` using PDFKit thro
 - `git filter-branch` ends by checking out the rewritten HEAD, which DELETES from the working tree the files it removed from history (`reference/` vanished from disk). Take a `git bundle create ... --all` backup first and restore the folder from it; it was byte-identical afterwards.
 - The first HTTPS push died with "RPC failed; HTTP 400" (about 3.5 MB of history with photos) until `git config --local http.postBuffer 524288000`.
 - A fresh clone (`git clone . /tmp/x && npm ci && npm test && npm run build`) is the right pre-push check: it proves nothing depends on ignored local files such as `reference/`.
+
+## 2026-11-19 - Cover first-load weight
+- Measured on the live site: first load was 1.2 MB, and ~850 KB of it (7 dish photos for page 1: chicksilog hero plus the silog and noodle tiles) loaded on the COVER, because `Pager` marked page +-1 as `near` and a near stage renders its photos eagerly. They started right after the fonts, so on a slow phone link they competed with the fonts and the cover intro animation.
+- Fix: `isNearPage(index, activeIndex, neighboursReady)` in `lib/pager.ts`. The current page is always near; neighbours only after `whenSettled` (`lib/settle.ts`: page `load` then idle, or first user input, or a 5 s cap). `useNeighboursReady` wires it into `Pager`. Fast tap on "Open menu" still works: the tap is the first input, and page 1 is then the active page anyway.
+- `whenSettled` takes an env seam (`SettleEnv`) like `createAnatomiaLoader(importer)`, so it is tested without a DOM. `browserSettleEnv()` is the real one.
+- Only fonts used on the cover are preloaded in `index.html` (Cinzel, Familjen italic for the tagline). Bricolage and Reddit Mono are not on the cover; preloading them would compete with the arch image and JS on a slow link.
+- Dev note: the Vite dev server serves unbundled modules, so load timing there is not representative. Measure with `npm run build` then `npm run preview` (launch.json: `la-roma-preview`, port 5198).
