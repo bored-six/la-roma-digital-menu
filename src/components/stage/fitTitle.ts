@@ -14,7 +14,12 @@ export function fitTitle(el: HTMLElement): void {
   el.style.fontSize = '';
   el.style.whiteSpace = 'nowrap';
   const base = Number.parseFloat(getComputedStyle(el).fontSize);
-  const size = fitFontSize({ base, available: el.clientWidth * SLACK, needed: el.scrollWidth, min: MIN_PX });
+  // The width of the text itself. scrollWidth would be wrong: it is never smaller than the box, so a short name
+  // would always look "too wide" for the slack and be shrunk below the token size.
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const needed = range.getBoundingClientRect().width;
+  const size = fitFontSize({ base, available: el.clientWidth * SLACK, needed, min: MIN_PX });
   el.style.whiteSpace = '';
   if (size < base) el.style.fontSize = `${size}px`;
 }
@@ -32,7 +37,8 @@ export function keepTitleFitted(el: HTMLElement): () => void {
           width = el.clientWidth;
           refit();
         });
-  observer?.observe(el);
+  // Watch the parent, not the title: a refit changes the title's height, which would re-notify a title observer.
+  observer?.observe(el.parentElement ?? el);
   const fonts = typeof document !== 'undefined' ? document.fonts : undefined;
   fonts?.addEventListener('loadingdone', refit);
   return () => {

@@ -57,10 +57,10 @@
      "La Roma Peso" is a 1 KB subset of EB Garamond holding only the peso sign, which Bodoni Moda does not have. It goes FIRST:
      its unicode-range is just U+20B1, and Bodoni's latin-ext file also claims U+20B1 (without the glyph), so listed after it the
      browser would download 25 KB of Bodoni latin-ext on every price page before falling through. */
-  --font-display: "La Roma Peso", "Bodoni Moda Variable", "Bodoni 72", Didot, serif;
-  --font-name: "La Roma Peso", "Bodoni Moda Variable", "Bodoni 72", Didot, serif;
-  --font-desc: "EB Garamond Variable", Garamond, Georgia, serif;
-  --font-price: "La Roma Peso", "Bodoni Moda Variable", "Bodoni 72", Didot, serif;
+  --font-display: "La Roma Peso", "Bodoni Moda Variable", "Bodoni Moda", "Bodoni 72", Didot, serif;
+  --font-name: "La Roma Peso", "Bodoni Moda Variable", "Bodoni Moda", "Bodoni 72", Didot, serif;
+  --font-desc: "EB Garamond Variable", "EB Garamond", Garamond, Georgia, serif;
+  --font-price: "La Roma Peso", "Bodoni Moda Variable", "Bodoni Moda", "Bodoni 72", Didot, serif;
 
   /* scale (px at 390). Each role: size / line-height / tracking / weight */
   --fs-cover: clamp(2.75rem, 12.5vw, 4rem);      /* LA ROMA */
