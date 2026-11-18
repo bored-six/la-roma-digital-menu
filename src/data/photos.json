@@ -34,6 +34,27 @@
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.497, "r": 0.335 }
   },
+  "beef-liver-sisig": {
+    "file": "dishes/beef-liver-sisig.jpg",
+    "alt": "Chopped beef liver sisig with onion, green chili and a calamansi half on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.497, "r": 0.366 }
+  },
+  "beef-sisig": {
+    "file": "dishes/beef-sisig.jpg",
+    "alt": "Chopped beef sisig with red onion rings, green and red chili and a calamansi half on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.503, "cy": 0.493, "r": 0.369 }
+  },
+  "beef-steak": {
+    "file": "dishes/beef-steak.jpg",
+    "alt": "Thin slices of beef braised in soy sauce with onion rings and spring onion on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.497, "r": 0.375 }
+  },
   "bihon": {
     "file": "dishes/bihon.jpg",
     "alt": "Stir-fried thin rice noodles with shredded chicken, carrot, cabbage and spring onion on a plate, with a calamansi half",
@@ -76,6 +97,20 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.324, "r": 0.285 }
   },
+  "chicken-sisig": {
+    "file": "dishes/chicken-sisig.jpg",
+    "alt": "Chopped chicken sisig with red onion, green chili, a mayo drizzle and a calamansi half on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.501, "cy": 0.501, "r": 0.414 }
+  },
+  "chicken-skin": {
+    "file": "dishes/chicken-skin.jpg",
+    "alt": "Crispy fried chicken skin with a small cup of vinegar dip on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.503, "r": 0.371 }
+  },
   "chicksilog": {
     "file": "dishes/chicksilog.jpg",
     "alt": "Garlic fried rice with two fried chicken drumsticks, a sunny-side-up egg and tomato slices on a plate",
@@ -88,7 +123,7 @@
     "alt": "Chopsuey of broccoli, cauliflower, carrot, baby corn, snow peas and chicken in a light sauce, in a shallow bowl",
     "alsoFor": [],
     "background": "table",
-    "plate": { "cx": 0.497, "cy": 0.497, "r": 0.33 }
+    "plate": { "cx": 0.497, "cy": 0.495, "r": 0.347 }
   },
   "crispy-pata-regular": {
     "file": "dishes/crispy-pata-regular.jpg",
@@ -188,6 +223,13 @@
     "background": "table",
     "plate": { "cx": 0.5, "cy": 0.325, "r": 0.285 }
   },
+  "humba": {
+    "file": "dishes/humba.jpg",
+    "alt": "Braised pork belly in a dark sweet sauce with banana slices and a bay leaf, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.373 }
+  },
   "hungarian-sausage": {
     "file": "dishes/hungarian-sausage.jpg",
     "alt": "Garlic fried rice topped with a sunny-side-up egg, with sliced grilled Hungarian sausage and two tomato slices on a plate",
@@ -208,6 +250,20 @@
     "alsoFor": [],
     "background": "board",
     "plate": { "cx": 0.5, "cy": 0.498, "r": 0.443 }
+  },
+  "lechon-kawali": {
+    "file": "dishes/lechon-kawali.jpg",
+    "alt": "Chunks of deep-fried pork belly with crackling skin and a cup of dark liver-sauce dip on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.497, "r": 0.366 }
+  },
+  "lumpia-shanghai": {
+    "file": "dishes/lumpia-shanghai.jpg",
+    "alt": "Crispy lumpia shanghai spring rolls stacked on a plate with a cup of sweet chili sauce",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.491, "r": 0.366 }
   },
   "medium-bilao": {
     "file": "dishes/medium-bilao.jpg",
@@ -237,6 +293,13 @@
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.499, "r": 0.388 }
   },
+  "pork-dinuguan": {
+    "file": "dishes/pork-dinuguan.jpg",
+    "alt": "Dark pork dinuguan stew with a long green chili and two white puto, in a bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.375 }
+  },
   "pork-hungarian": {
     "file": "dishes/pork-hungarian.jpg",
     "alt": "Sliced grilled Hungarian-style sausage on a plate with a mound of rice and a cup of ketchup and mustard",
@@ -256,7 +319,7 @@
     "alt": "Stir-fried vegetables with shrimp, squid rings, quail eggs and meat in a bowl",
     "alsoFor": [],
     "background": "table",
-    "plate": { "cx": 0.499, "cy": 0.503, "r": 0.339 }
+    "plate": { "cx": 0.497, "cy": 0.497, "r": 0.383 }
   },
   "shrimp-in-coconut-sauce": {
     "file": "dishes/shrimp-in-coconut-sauce.jpg",
@@ -279,6 +342,13 @@
     "background": "table",
     "plate": { "cx": 0.493, "cy": 0.495, "r": 0.391 }
   },
+  "stir-fry-veggies": {
+    "file": "dishes/stir-fry-veggies.jpg",
+    "alt": "Stir-fried broccoli, carrot, cabbage, bell pepper and snow peas in a light sauce, in a shallow bowl",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.499, "cy": 0.499, "r": 0.383 }
+  },
   "sweet-and-sour-fish-fillet": {
     "file": "dishes/sweet-and-sour-fish-fillet.jpg",
     "alt": "Sweet and sour fish fillet with peppers on a plate, with a bowl of shrimp sinigang below it",
@@ -292,6 +362,13 @@
     "alsoFor": [],
     "background": "table",
     "plate": { "cx": 0.501, "cy": 0.499, "r": 0.382 }
+  },
+  "tenderloin-steak": {
+    "file": "dishes/tenderloin-steak.jpg",
+    "alt": "Seared beef tenderloin, sliced, with brown gravy and buttered corn and carrot on a plate",
+    "alsoFor": [],
+    "background": "table",
+    "plate": { "cx": 0.505, "cy": 0.493, "r": 0.372 }
   },
   "tinolang-isda": {
     "file": "dishes/tinolang-isda.jpg",

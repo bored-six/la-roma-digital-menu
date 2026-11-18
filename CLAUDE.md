@@ -18,10 +18,10 @@ Vite + React 18 + TypeScript (strict), GSAP (core, Draggable, SplitText, @gsap/r
 Commands: `npm run dev` (port 5173, or see `.claude/launch.json`), `npm test`, `npm run typecheck`, `npm run build`.
 
 ## Status
-Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 45 dish photos (16 Gemini ones added 2026-11-19, tests not re-run after adding them), 343 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; all fixed and the second review round approved. Hosting works from any static folder (relative base), not from file://.
+Built: 14 pages (cover, 12 category pages, Grazie), hero stage with option tiles, Anatomia exploded view, 56 dish photos (27 Gemini ones added 2026-11-19; not run locally after adding them, CI runs the tests on push), 343 tests. First review round (2026-11-18) rejected on error boundary, a swap race, and image loading; all fixed and the second review round approved. Hosting works from any static folder (relative base), not from file://.
 Live: https://bored-six.github.io/la-roma-digital-menu/ (public repo bored-six/la-roma-digital-menu). `.github/workflows/deploy.yml` runs tests, builds and publishes to GitHub Pages on every push to main. `reference/` is gitignored (kept local only, not in the public repo). Commits use the GitHub noreply email (repo-local git config).
-Photo prompts (one paste-ready prompt per dish, style lock inside) for the 35 dishes still missing a photo: `docs/gemini-photo-prompts.md`.
-Open: real Facebook URL (`src/data/site.ts` placeholder); photos for 35 more dishes (prompt file) and the 8 branded drinks (left on the placeholder on purpose); Safari/iOS untested; Unli Rice page keeps only the first PDF tagline.
+Photo prompts (one paste-ready prompt per dish, style lock inside) for the 24 dishes still missing a photo: `docs/gemini-photo-prompts.md`.
+Open: real Facebook URL (`src/data/site.ts` placeholder); photos for 24 more dishes (prompt file) and the 8 branded drinks (left on the placeholder on purpose); Safari/iOS untested; Unli Rice page keeps only the first PDF tagline.
 
 ## Where things live
 - `reference/` original PDF and page renders (read-only, do not edit)
