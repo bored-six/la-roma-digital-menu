@@ -105,7 +105,7 @@ button {
 /* ---------- shell: phone column, centred; the printed frame continues around it on desktop ---------- */
 .shell {
   --col-w: min(var(--column-max), 100vw);
-  --indicator-space: 118px;
+  --indicator-space: 118px; /* the footer is 38 + 34 + 2 + 14.4 + 30 = 118.4px tall: the page ends above its fade */
   position: relative;
   display: flex;
   justify-content: center;
@@ -152,6 +152,7 @@ button {
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: contain;
+  scroll-padding-block: 30px 118px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   scrollbar-width: none;
@@ -170,20 +171,37 @@ button {
   pointer-events: none;
 }
 
-/* ---------- indicator ---------- */
+/* ---------- the printed frame: fixed, the pages slide inside it ---------- */
+.pager .pager__frame {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-frame);
+  pointer-events: none;
+  /* rows that scroll up dissolve under the frame's top edge instead of running into its hairlines */
+  background: linear-gradient(to bottom, var(--lr-parchment) 0, var(--lr-parchment) 20px, rgb(250 245 237 / 0) 30px);
+  transition: opacity var(--dur-base) linear;
+}
+/* the cover portal (track locked): the red arch floods the whole screen, frame included, as it did when each page had its own frame */
+.pager__track[data-locked] ~ .pager__frame {
+  opacity: 0;
+  transition-duration: var(--dur-quick);
+}
+
+/* ---------- indicator: a footer the page runs out into. An arcade (one arch per page) on a baseline, then name and count ---------- */
 .indicator {
+  --pip-w: 14px;
+  --pip-h: 19px;
   position: absolute;
   z-index: var(--z-indicator);
-  left: 10px;
-  right: 10px;
-  bottom: max(10px, env(safe-area-inset-bottom));
-  padding: 2px 10px 11px;
-  border: 1px solid rgb(146 117 79 / 0.38);
-  border-radius: 22px;
-  background: rgb(250 245 237 / 0.94);
-  -webkit-backdrop-filter: blur(10px) saturate(130%);
-  backdrop-filter: blur(10px) saturate(130%);
-  box-shadow: 0 16px 30px -18px rgb(60 30 10 / 0.55), inset 0 1px 0 rgb(255 255 255 / 0.7);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* the footer is a full-width strip: it must not swallow taps, wheel or swipes meant for the page under its fade. Only the pips take input. */
+  pointer-events: none;
+  /* the top 38px are the fade: rows dissolve into the parchment before they reach the arcade.
+     The label row gets extra inline room (34px in) so it clears the frame's cut corners. */
+  padding: 38px 24px calc(30px + env(safe-area-inset-bottom));
+  background: linear-gradient(to bottom, rgb(250 245 237 / 0) 0, var(--lr-parchment) 34px);
   transition:
     opacity var(--dur-quick) linear,
     transform var(--dur-base) var(--ease-roman),
@@ -201,15 +219,27 @@ button {
 }
 
 .indicator__pips {
+  position: relative;
   display: flex;
   justify-content: center;
   margin: 0;
   padding: 0;
   list-style: none;
 }
+/* the baseline the arches stand on */
+.indicator__pips::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 7px;
+  height: 1px;
+  background: rgb(146 117 79 / 0.75);
+  pointer-events: none;
+}
 .indicator__pips li {
   /* 24px hit area per pip (WCAG 2.2 target size). Only when 14 x 24 cannot fit does a slot get narrower, and then
-     the slots touch: no gap is ever left between two taps. The drawn pip stays 8 x 12 (22 wide when active). */
+     the slots touch: no gap is ever left between two taps. */
   flex: 1 1 24px;
   min-width: 0;
   max-width: 24px;
@@ -219,20 +249,37 @@ button {
   align-items: flex-end;
   justify-content: center;
   width: 100%;
-  height: 30px;
-  padding: 0 0 7px;
+  height: 34px;
+  padding: 0 0 8px;
   border: 0;
   border-radius: 8px;
   background: none;
+  pointer-events: auto;
 }
 .indicator__pip:focus-visible {
   box-shadow: var(--sh-focus);
 }
-.lr-pip.is-active {
-  width: 22px;
+/* an arch standing on the baseline: open at the bottom, the baseline closes it */
+.indicator .lr-pip {
+  box-sizing: border-box;
+  width: var(--pip-w);
+  height: var(--pip-h);
+  border-width: 1.25px 1.25px 0;
+  border-radius: calc(var(--pip-w) / 2) calc(var(--pip-w) / 2) 0 0 / 7px 7px 0 0;
+  transition:
+    height var(--dur-base) var(--ease-roman),
+    background-color var(--dur-quick) linear,
+    border-color var(--dur-quick) linear;
+}
+.indicator .lr-pip.is-seen {
+  background: rgb(146 117 79 / 0.24);
+}
+.indicator .lr-pip.is-active {
+  width: var(--pip-w);
+  height: calc(var(--pip-h) + 4px);
   border-color: var(--lr-red);
   background: var(--lr-red);
-  border-radius: 50% 50% 1px 1px / 7px 7px 1px 1px;
+  border-radius: calc(var(--pip-w) / 2) calc(var(--pip-w) / 2) 0 0 / 7px 7px 0 0;
 }
 
 .indicator__meta {
@@ -240,16 +287,18 @@ button {
   align-items: baseline;
   justify-content: space-between;
   gap: var(--sp-3);
-  padding: 0 4px;
+  margin-top: 2px;
+  padding: 0 10px;
 }
 .indicator__label {
   min-width: 0;
   overflow: hidden;
   font: 600 var(--fs-meta) / 1.2 var(--font-display);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: var(--lr-ink);
   animation: label-in var(--dur-instant) linear;
 }
 .indicator__count {
@@ -269,12 +318,15 @@ button {
   }
 }
 
-/* 14 x 24px needs 336px between the bar's padding: below 390px tighten the bar so it still fits down to 359px */
+/* 14 x 24px needs 336px between the footer's padding, and the arcade has to stay inside the frame's inner hairline (16.5px from the edge):
+   that holds from 376px up. Below 390px the footer's side padding drops to 20px; the slots then shrink (22.9px wide at 360px, still 34px tall,
+   touching, so no dead gap between two taps) rather than run over the frame. */
 @media (max-width: 389px) {
   .indicator {
-    left: 6px;
-    right: 6px;
-    padding-inline: 4px;
+    padding-inline: 20px;
+  }
+  .indicator__meta {
+    padding-inline: 14px;
   }
 }
 
@@ -351,6 +403,7 @@ button {
 /* ---------- a page ---------- */
 .page__inner {
   --indent: 34px;
+  position: relative;
   min-height: 100%;
   padding: calc(env(safe-area-inset-top) + 30px) 24px calc(var(--indicator-space) + env(safe-area-inset-bottom));
 }
@@ -779,8 +832,8 @@ button {
 }
 .closing__sprig {
   position: absolute;
-  top: calc(env(safe-area-inset-top) + 26px);
-  left: 28px;
+  top: calc(env(safe-area-inset-top) + 36px);
+  left: 30px;
   width: 70px;
   height: 35px;
   color: var(--lr-gold);
@@ -901,6 +954,9 @@ button {
   }
   .indicator__label {
     animation: none;
+  }
+  .indicator .lr-pip {
+    transition-duration: 1ms;
   }
   .row__btn:active,
   .note--jump:active,

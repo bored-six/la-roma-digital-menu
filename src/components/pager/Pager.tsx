@@ -70,6 +70,8 @@ export function Pager({ pages, renderPage }: PagerProps) {
               </PageSlot>
             ))}
           </main>
+          {/* The printed frame stays put and the pages slide inside it (it also fades rows out under its top edge). */}
+          <div className="pager__frame lr-frame" aria-hidden="true" />
           <div ref={veilRef} className="pager__veil" aria-hidden="true" />
           <Indicator pages={pages} activeIndex={liveIndex} onGo={(i) => goTo(i, { focus: true })} />
         </div>

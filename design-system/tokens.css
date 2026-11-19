@@ -137,6 +137,7 @@
   --z-label: 30;
   --z-pager: 40;
   --z-indicator: 50;
+  --z-frame: 55;                     /* the printed frame: over the page and the dock, under Anatomia */
   --z-anatomia: 60;
   --z-portal: 90;
   --z-toast: 100;

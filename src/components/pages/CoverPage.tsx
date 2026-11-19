@@ -114,7 +114,7 @@ export const CoverPage = memo(function CoverPage({ active }: CoverPageProps) {
   });
 
   return (
-    <div ref={rootRef} className="page__inner lr-frame cover">
+    <div ref={rootRef} className="page__inner cover">
       <div className="cover__emblem-wrap" data-rise>
         <Emblem className="cover__emblem" />
       </div>

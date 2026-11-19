@@ -40,7 +40,7 @@ export const CategoryPage = memo(function CategoryPage({ page, active, near }: C
   );
 
   return (
-    <div className="page__inner lr-frame">
+    <div className="page__inner">
       <h2 className="sr-only" tabIndex={-1} data-page-heading>
         {page.label}
       </h2>
@@ -55,7 +55,7 @@ export const CategoryPage = memo(function CategoryPage({ page, active, near }: C
             {category.notes.map((note) => (
               <NoteLine key={note.text} note={note} />
             ))}
-            <ItemList items={category.items} selectedId={selectedId} onSelect={onSelect} />
+            <ItemList items={category.items} selectedId={selectedId} onSelect={onSelect} hideBadge={category.title} />
           </section>
         );
       })}

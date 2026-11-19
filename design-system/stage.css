@@ -344,7 +344,7 @@
   clip-path: inset(0 0 0 0);
 }
 
-/* indicator pips: round arch idle, flattened Roman arch when active */
+/* indicator pips (generic recipe; the app's footer overrides it as an arcade, see .indicator .lr-pip in src/styles/app.css): round arch idle, flattened Roman arch when active */
 .lr-pip {
   display: block;
   width: 8px;

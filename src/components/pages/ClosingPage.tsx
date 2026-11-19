@@ -43,7 +43,7 @@ export const ClosingPage = memo(function ClosingPage() {
   );
 
   return (
-    <div ref={rootRef} className="page__inner lr-frame closing">
+    <div ref={rootRef} className="page__inner closing">
       <Sprig className="sprig closing__sprig" />
       <div className="closing__body">
         <div ref={emblemRef} className="closing__emblem-wrap">

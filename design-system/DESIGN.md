@@ -19,7 +19,8 @@ Files: `tokens.css` (all values), `stage.css` (stage and ornament recipes), `svg
 - `laurel-ring.svg` + a category icon at 34% size and stroke-width 1.25 = the **placeholder plate** (`.lr-plate--placeholder`).
 - `rule-diamond.svg`: the line has `pathLength="1"`, so it draws with dashoffset 1 to 0. The CSS version is `.lr-rule` with `--rule: 0..1`.
 - `frame-scalloped.svg` is a 9-slice source (slice 32). In CSS use `.lr-frame` (border-image, gold baked in). Concave corners R15 outside and R21 inside, with a diamond in each corner cut-out.
-- Pips: idle is a round arch (8x12). Active widens to a flattened Roman arch (22x12, filled red). Wrap each pip in a button with a hit area of at least 24x24.
+- The frame is ONE fixed element per screen (`.pager__frame.lr-frame`, z `--z-frame`): the pages slide and scroll inside it. Its top 30px carry a parchment gradient so rows dissolve under the top edge. Never put `.lr-frame` on a scrolling page: its bottom edge then ends up behind the footer.
+- Footer (the page indicator): not a capsule. A full-width parchment footer with a 38px gradient fade on top, an arcade of one arch per page standing on a 1px gold baseline (14x19, open at the bottom; red and 4px taller = here, gold tint = already seen, hollow = ahead), then the page name left and `04 / 14` right. Label row sits 34px in from the edge to clear the frame's cut corners. Each pip is a button, 24px wide x 34px tall from 376px screens up; on 360px phones the slots shrink to about 23px (touching, so no dead gap) because the arcade must stay inside the frame. The footer itself is `pointer-events: none`; only the pips take input.
 
 ## Type
 Two Italian families, nothing else.

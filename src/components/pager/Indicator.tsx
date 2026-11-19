@@ -10,7 +10,7 @@ interface IndicatorProps {
 
 const two = (n: number) => String(n).padStart(2, '0');
 
-/** Fixed bottom bar: one arch pip per page, the page name, and "08 / 14". Hidden on the cover. */
+/** Fixed footer: an arcade with one arch per page (red = here, tinted = already seen), the page name, and "08 / 14". Hidden on the cover. */
 export function Indicator({ pages, activeIndex, onGo }: IndicatorProps) {
   const navRef = useRef<HTMLElement>(null);
   const hidden = activeIndex === 0;
@@ -37,7 +37,7 @@ export function Indicator({ pages, activeIndex, onGo }: IndicatorProps) {
                 aria-current={active ? 'page' : undefined}
                 onClick={() => onGo(i)}
               >
-                <span className={active ? 'lr-pip is-active' : 'lr-pip'} aria-hidden="true" />
+                <span className={active ? 'lr-pip is-active' : i < activeIndex ? 'lr-pip is-seen' : 'lr-pip'} aria-hidden="true" />
               </button>
             </li>
           );

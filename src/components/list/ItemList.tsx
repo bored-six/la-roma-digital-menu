@@ -6,6 +6,8 @@ interface ItemListProps {
   items: readonly Item[];
   selectedId: string;
   onSelect(id: string): void;
+  /** A badge that only repeats the section's own title (17 "Unli rice" pills under "Unli Rice") is left off the rows. */
+  hideBadge?: string;
 }
 
 interface Group {
@@ -33,7 +35,7 @@ function group(items: readonly Item[]): Group[] {
   return groups;
 }
 
-export function ItemList({ items, selectedId, onSelect }: ItemListProps) {
+export function ItemList({ items, selectedId, onSelect, hideBadge }: ItemListProps) {
   const groups = useMemo(() => group(items), [items]);
 
   return (
@@ -55,7 +57,7 @@ export function ItemList({ items, selectedId, onSelect }: ItemListProps) {
           ) : null}
           <ul className="rows">
             {g.items.map((item) => (
-              <ItemRow key={item.id} item={item} selected={item.id === selectedId} onSelect={onSelect} />
+              <ItemRow key={item.id} item={item} selected={item.id === selectedId} onSelect={onSelect} hideBadge={hideBadge} />
             ))}
           </ul>
         </div>
