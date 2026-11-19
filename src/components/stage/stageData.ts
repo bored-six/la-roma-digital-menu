@@ -6,8 +6,18 @@ import type { AnatomyRegion, PhotoEntry } from '../../types';
 export const PHOTOS = photosJson as Record<string, PhotoEntry>;
 export const ANATOMY_REGIONS: Record<string, AnatomyRegion[]> = ANATOMY;
 
-/** public/ files are served from BASE_URL, so the site also works from a sub-path host. */
-export const photoUrl = (file: string): string => `${import.meta.env.BASE_URL}${file}`;
+/**
+ * `file` in photos.json is the 900 px JPEG master ("dishes/<slug>.jpg"). The app never requests it: it loads the WebP variants
+ * built from it by scripts/photo-variants.sh. Only the extension is swapped.
+ */
+export const heroFile = (file: string): string => file.replace(/\.jpg$/, '.webp');
+/** The 320 px WebP for the small option tiles: "dishes/t/<slug>.webp". */
+export const thumbFile = (file: string): string => heroFile(file).replace(/^dishes\//, 'dishes/t/');
+
+/** public/ files are served from BASE_URL, so the site also works from a sub-path host. The plate photo (full size WebP). */
+export const photoUrl = (file: string): string => `${import.meta.env.BASE_URL}${heroFile(file)}`;
+/** The small tile photo. */
+export const thumbUrl = (file: string): string => `${import.meta.env.BASE_URL}${thumbFile(file)}`;
 
 const loaded = new Map<string, Promise<void>>();
 

@@ -64,7 +64,7 @@ export const OptionTiles = forwardRef<OptionTilesHandle, OptionTilesProps>(funct
                 <PlaceholderPlate icon={findItemContext(item.id)?.category.icon ?? ''} variant="tile" />
               ) : (
                 <span className={s.thumb}>
-                  <PhotoFrame file={photo.entry.file} alt="" geom={plateGeomFor(item, photo)} show={show} />
+                  <PhotoFrame file={photo.entry.file} alt="" geom={plateGeomFor(item, photo)} show={show} variant="thumb" />
                 </span>
               )}
             </span>

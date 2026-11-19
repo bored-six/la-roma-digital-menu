@@ -4,7 +4,7 @@ import type { ResolvedPhoto } from '../../lib/photos';
 import type { Item } from '../../types';
 import { PlaceholderPlate } from './PlaceholderPlate';
 import { cropFrame, plateGeomFor, type PlateGeom } from './stageLogic';
-import { photoUrl } from './stageData';
+import { photoUrl, thumbUrl } from './stageData';
 import { photoSize } from './photoSizes';
 import s from './stage.module.css';
 
@@ -19,6 +19,8 @@ interface PhotoFrameProps {
    * horizontally, so `loading=lazy` alone would still fetch far pages. Once shown, keep it true.
    */
   show?: boolean;
+  /** "thumb": the 320 px file, for the small option tiles. Default "hero": the full size file. */
+  variant?: 'hero' | 'thumb';
   className?: string;
   /** Style for the <img> itself (Anatomia clips it to one region with clip-path). */
   imgStyle?: CSSProperties;
@@ -31,7 +33,7 @@ interface PhotoFrameProps {
  * Pure CSS: width is a percentage of the parent, the shift is a percentage of the frame itself, so no image size is needed.
  * Because only the circle is shown, the white rounded corners baked into tyulah-itum, bulalo and halo-halo never appear.
  */
-export function PhotoFrame({ file, alt, geom, eager = false, show = true, className, imgStyle, children }: PhotoFrameProps) {
+export function PhotoFrame({ file, alt, geom, eager = false, show = true, variant = 'hero', className, imgStyle, children }: PhotoFrameProps) {
   const f = cropFrame(geom);
   const size = photoSize(file);
   return (
@@ -41,9 +43,9 @@ export function PhotoFrame({ file, alt, geom, eager = false, show = true, classN
     >
       {show && (
         <img
-          src={photoUrl(file)}
+          src={variant === 'thumb' ? thumbUrl(file) : photoUrl(file)}
           alt={alt}
-          // the file's real pixel size: the browser reserves the right aspect ratio before the bytes arrive
+          // the master's pixel size (the thumb has the same aspect ratio): the browser reserves the right ratio before the bytes arrive
           {...(size !== null ? { width: size.w, height: size.h } : {})}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
